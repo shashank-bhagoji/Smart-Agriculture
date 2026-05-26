@@ -87,8 +87,7 @@ exports.register = async (req, res) => {
       });
     }
 
-    const secret = process.env.JWT_SECRET || "fallback_secret";
-    const token = jwt.sign({ id: user._id, role: user.role }, secret, { expiresIn: "30d" });
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
     res.json({ token, user });
   } catch (err) {
@@ -114,8 +113,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    const secret = process.env.JWT_SECRET || "fallback_secret";
-    const token = jwt.sign({ id: adminUser._id, role: "admin" }, secret, { expiresIn: "30d" });
+    const token = jwt.sign({ id: adminUser._id, role: "admin" }, process.env.JWT_SECRET, { expiresIn: "30d" });
     return res.json({ token, user: adminUser });
   }
 
@@ -133,8 +131,7 @@ exports.login = async (req, res) => {
     });
   }
 
-  const secret = process.env.JWT_SECRET || "fallback_secret";
-  const token = jwt.sign({ id: user._id, role: user.role }, secret, { expiresIn: "30d" });
+  const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
   res.json({ token, user });
 };

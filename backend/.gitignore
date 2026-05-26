@@ -1,0 +1,34 @@
+# ==============================================================================
+# BACKEND GITIGNORE - (Node.js API + Python Machine Learning)
+# ==============================================================================
+
+# Node Dependencies
+node_modules/
+
+# Local Environment Variables & Secrets
+.env
+
+# Dynamic User Uploads (Ignore uploaded leaf photos/profiles, but keep the directory)
+uploads/*
+!uploads/.gitkeep
+
+# Python Caches and Compilation
+__pycache__/
+ml/__pycache__/
+*.py[cod]
+*$py.class
+
+# Python Virtual Environments (if created locally inside backend)
+venv/
+.venv/
+env/
+
+# Editor / IDE Settings
+.vscode/
+.idea/
+*.swp
+
+# OS Files and Logs
+.DS_Store
+Thumbs.db
+*.log

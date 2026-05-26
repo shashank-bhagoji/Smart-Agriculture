@@ -1,0 +1,122 @@
+{
+  "Cotton_Bacterial_Blight": {
+    "disease_name": "Cotton Bacterial Blight (Angular Leaf Spot)",
+    "affected_crop": "Cotton",
+    "symptoms": "Water-soaked, angular spots on leaves that turn brown or black. Black cankers on stems (blackarm phase) and rotting of bolls.",
+    "organic_solution": {
+      "pesticide": "Neem Oil Spray & Pseudomonas fluorescens",
+      "application": "Spray Neem Oil (3-5% concentration) combined with liquid soap emulsifier every 10 days. Also, apply seed treatment with Pseudomonas fluorescens (10g/kg of seed) and spray the crop with the same at 0.2% concentration.",
+      "cultural_control": "Destroy infected crop residues post-harvest, use certified disease-free seeds, and practice crop rotation with non-host crops."
+    },
+    "chemical_solution": {
+      "pesticide": "Copper Oxychloride + Streptocycline",
+      "application": "Spray Copper Oxychloride 50% WP (3.0 g/litre of water) mixed with Streptocycline (100 mg/litre of water) at the initiation of the disease. Repeat after 15 days if necessary.",
+      "precautions": "Avoid spraying during hot midday hours to prevent phytotoxicity. Wear protective gear."
+    }
+  },
+  "Tomato_Early_Blight": {
+    "disease_name": "Tomato Early Blight",
+    "affected_crop": "Tomato",
+    "symptoms": "Dark spots with concentric rings (target-like pattern) on older leaves. Leaves turn yellow and drop off prematurely.",
+    "organic_solution": {
+      "pesticide": "Trichoderma viride & Copper Octanoate (Copper Soap)",
+      "application": "Apply Trichoderma viride to the soil and spray foliage with copper-based soap/fungicide approved for organic farming.",
+      "cultural_control": "Prune lower leaves to prevent splash-up from the soil, apply mulch around the base of the plant, and avoid overhead sprinkler irrigation."
+    },
+    "chemical_solution": {
+      "pesticide": "Chlorothalonil or Mancozeb",
+      "application": "Spray Chlorothalonil 75% WP (2.0 g/litre) or Mancozeb 75% WP (2.5 g/litre) at 7-10 day intervals starting when weather conditions favor disease development.",
+      "precautions": "Adhere to the Pre-Harvest Interval (PHI) of 5 to 7 days before picking tomatoes."
+    }
+  },
+  "Tomato_Late_Blight": {
+    "disease_name": "Tomato Late Blight",
+    "affected_crop": "Tomato",
+    "symptoms": "Large, blue-gray water-soaked spots on leaves that rapidly turn brown and dry. White mold appears on the underside of leaves in humid weather.",
+    "organic_solution": {
+      "pesticide": "Bordeaux Mixture & Aerated Compost Tea",
+      "application": "Spray 1% Bordeaux mixture at regular intervals during high humidity. Use compost tea to boost leaf surface microbes.",
+      "cultural_control": "Provide wide spacing for air circulation, grow resistant varieties, and destroy infected plants immediately to prevent airborne spread."
+    },
+    "chemical_solution": {
+      "pesticide": "Metalaxyl 8% + Mancozeb 64% (Ridomil Gold) or Azoxystrobin",
+      "application": "Spray Metalaxyl-M + Mancozeb (2.5 g/litre of water) or Azoxystrobin (1.0 ml/litre of water) immediately upon the first appearance of symptoms.",
+      "precautions": "Highly prone to resistance development; alternate with other fungicide classes and do not exceed recommended annual applications."
+    }
+  },
+  "Corn_Common_Rust": {
+    "disease_name": "Corn (Maize) Common Rust",
+    "affected_crop": "Corn / Maize",
+    "symptoms": "Golden-brown to reddish-brown powdery pustules on both upper and lower leaf surfaces, which turn black as the plant matures.",
+    "organic_solution": {
+      "pesticide": "Sulfur Fungicide & Herbal Extracts",
+      "application": "Apply wettable sulfur powder (3g/litre) or spray garlic/neem-based botanical formulations early in the morning.",
+      "cultural_control": "Plant highly resistant hybrid varieties, clear all volunteer plants, and till under crop residues in the off-season."
+    },
+    "chemical_solution": {
+      "pesticide": "Propiconazole or Mancozeb",
+      "application": "Spray Propiconazole 25% EC (1.0 ml/litre of water) or Mancozeb (2g/litre of water) at the first sign of rust pustules.",
+      "precautions": "Ensure complete canopy coverage, particularly on upper leaf surfaces where rust is most prominent."
+    }
+  },
+  "Potato_Early_Blight": {
+    "disease_name": "Potato Early Blight",
+    "affected_crop": "Potato",
+    "symptoms": "Small brown/black spots on older leaves, forming concentric rings. Tubers may develop dark, sunken lesions.",
+    "organic_solution": {
+      "pesticide": "Bacillus subtilis & Copper Hydroxide",
+      "application": "Apply bio-fungicides containing Bacillus subtilis to soil and foliage. Use organic-approved copper hydroxide sprays during rainy spells.",
+      "cultural_control": "Ensure adequate nitrogen and potassium soil fertilization to prevent plant stress. Practice 3-year crop rotation."
+    },
+    "chemical_solution": {
+      "pesticide": "Mancozeb or Difenoconazole",
+      "application": "Apply Mancozeb (2.5 g/litre) or Difenoconazole 25% EC (0.5 ml/litre) at 10-14 day intervals.",
+      "precautions": "Ensure tubers are fully mature before harvesting to prevent skin damage and secondary infection."
+    }
+  },
+  "Potato_Late_Blight": {
+    "disease_name": "Potato Late Blight",
+    "affected_crop": "Potato",
+    "symptoms": "Water-soaked dark lesions on leaves, surrounded by a pale green halo. Rapid decay of stems and rotting of tubers in soil.",
+    "organic_solution": {
+      "pesticide": "Copper Soaps & Compost Tea",
+      "application": "Frequent, preventive sprays of copper octanoate. Harvest tubers only in dry weather and store in cool, dry conditions.",
+      "cultural_control": "Plant certified seed tubers. Hill up soil around potato plants to protect growing tubers from washing spores."
+    },
+    "chemical_solution": {
+      "pesticide": "Cymoxanil 8% + Mancozeb 64% or Dimethomorph",
+      "application": "Spray Cymoxanil + Mancozeb (2.0 g/litre) or Dimethomorph (1.0 g/litre) immediately when conditions turn cool and wet.",
+      "precautions": "Late blight can destroy crops within days. Act quickly at the earliest weather warnings."
+    }
+  },
+  "Rice_Blast": {
+    "disease_name": "Rice Blast (Neck Blast / Leaf Blast)",
+    "affected_crop": "Rice",
+    "symptoms": "Spindle-shaped, diamond-like lesions on leaves with grey centers and brown borders. Neck rot causes panicles to fall over.",
+    "organic_solution": {
+      "pesticide": "Pseudomonas fluorescens & Neem Formulations",
+      "application": "Soak seeds in Pseudomonas fluorescens solution. Spray the crop at tillering and panicle initiation stages with the same at 0.5% concentration.",
+      "cultural_control": "Avoid excess nitrogen fertilizer, maintain proper water levels in fields, and burn or compost stubbles after harvest."
+    },
+    "chemical_solution": {
+      "pesticide": "Tricyclazole 75% WP or Isoprothiolane",
+      "application": "Apply Tricyclazole (0.6 g/litre of water) or Isoprothiolane 40% EC (1.5 ml/litre of water) at tillering and booting stages.",
+      "precautions": "Ensure spray reaches the leaf sheath and base of panicles for neck blast prevention."
+    }
+  },
+  "Healthy": {
+    "disease_name": "Healthy Foliage",
+    "affected_crop": "General / All Crops",
+    "symptoms": "No visible spots, discoloration, or deformities. Leaves are green, firm, and normal in size.",
+    "organic_solution": {
+      "pesticide": "Preventive Bio-stimulants",
+      "application": "Keep up regular watering and apply well-composted organic manure or liquid vermiwash to maintain soil fertility and plant immunity.",
+      "cultural_control": "Perform regular scouting twice a week to detect early pests/pathogens. Clean tools before moving between fields."
+    },
+    "chemical_solution": {
+      "pesticide": "No Chemical Treatment Required",
+      "application": "Avoid applying chemical fungicides on healthy crops to preserve beneficial surface microflora and save input costs.",
+      "precautions": "Monitor environmental conditions (like continuous rainfall) to anticipate potential disease outbreaks."
+    }
+  }
+}

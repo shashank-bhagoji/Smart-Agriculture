@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import API from "../services/api";
+import API, { getImageUrl } from "../services/api";
 
 function EquipmentList() {
   const { t } = useTranslation();
@@ -140,15 +140,15 @@ function EquipmentList() {
               {/* Image Header */}
               {item.image ? (
                 <img 
-                  src={`http://localhost:5000${item.image}`} 
+                  src={getImageUrl(item.image)} 
                   alt={item.name} 
-                  style={{ width: "100%", height: "150px", objectFit: "cover", display: "block" }} 
+                  style={{ width: "100%", height: "150px", objectFit: "cover", display: "block" }}
+                  onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
                 />
-              ) : (
-                <div style={{ width: "100%", height: "150px", backgroundColor: "var(--bg-dark)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ color: "var(--text-muted)" }}>{t('no_image')}</span>
-                </div>
-              )}
+              ) : null}
+              <div style={{ width: "100%", height: "150px", backgroundColor: "var(--bg-dark)", display: item.image ? 'none' : 'flex', alignItems: "center", justifyContent: "center" }}>
+                <span style={{ color: "var(--text-muted)", fontSize: "2.5rem" }}>🚜</span>
+              </div>
 
               <div style={{ padding: "0.8rem 1rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                 <h3 style={{ margin: 0, fontSize: "1.25rem", color: "var(--text-main)" }}>{item.name}</h3>
@@ -165,7 +165,6 @@ function EquipmentList() {
                     className={`fav-btn ${isFav ? "fav-active" : ""}`}
                     onClick={() => toggleFavorite(item._id)}
                     title={isFav ? "Remove from favorites" : "Add to favorites"}
-                    style={{ position: "static", background: "transparent", border: "none", fontSize: "1.5rem", cursor: "pointer", padding: 0 }}
                   >
                     {isFav ? "❤️" : "🤍"}
                   </button>
@@ -190,8 +189,34 @@ function EquipmentList() {
       {/* Booking Modal */}
       {showBookingModal && (
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
-          <div className="card" style={{ maxWidth: "420px", width: "90%", padding: "2.5rem", borderRadius: "24px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)" }}>
-            <h3 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>{t('book_item')} {selectedItem?.name}</h3>
+          <div className="card" style={{ maxWidth: "420px", width: "90%", padding: "2.5rem", borderRadius: "24px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", position: "relative" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
+              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{t('book_item')} {selectedItem?.name}</h3>
+              <button 
+                type="button"
+                onClick={() => setShowBookingModal(false)} 
+                style={{ 
+                  background: "rgba(239, 68, 68, 0.1)", 
+                  border: "none", 
+                  color: "#ef4444", 
+                  width: "28px", 
+                  height: "28px", 
+                  borderRadius: "50%", 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: "center", 
+                  fontSize: "1.1rem", 
+                  cursor: "pointer", 
+                  transition: "all 0.2s ease",
+                  marginLeft: "1rem",
+                  flexShrink: 0
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)'; e.currentTarget.style.transform = 'scale(1.08)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; e.currentTarget.style.transform = 'scale(1)'; }}
+              >
+                &times;
+              </button>
+            </div>
             <form onSubmit={confirmBooking} style={{ display: "flex", flexDirection: "column", gap: "1.2rem", marginTop: "1.5rem" }}>
               <div className="input-group">
                 <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>{t('start_date')}</label>
@@ -237,7 +262,28 @@ function EquipmentList() {
           <div className="card" style={{ maxWidth: "500px", width: "90%", padding: "2.5rem", borderRadius: "24px", maxHeight: "80vh", overflowY: "auto", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
               <h3 style={{ margin: 0, fontSize: "1.5rem" }}>{t('farmer_feedback')}</h3>
-              <button onClick={() => setShowReviewModal(false)} style={{ background: "none", border: "none", color: "var(--text-main)", fontSize: "2rem", cursor: "pointer", padding: "0 0.5rem" }}>&times;</button>
+              <button 
+                onClick={() => setShowReviewModal(false)} 
+                style={{ 
+                  background: "rgba(239, 68, 68, 0.1)", 
+                  border: "none", 
+                  color: "#ef4444", 
+                  width: "28px", 
+                  height: "28px", 
+                  borderRadius: "50%", 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: "center", 
+                  fontSize: "1.1rem", 
+                  cursor: "pointer", 
+                  transition: "all 0.2s ease",
+                  flexShrink: 0
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)'; e.currentTarget.style.transform = 'scale(1.08)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; e.currentTarget.style.transform = 'scale(1)'; }}
+              >
+                &times;
+              </button>
             </div>
             
             {loadingReviews ? (

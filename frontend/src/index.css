@@ -1237,3 +1237,39 @@ button:active {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Favorite Button Override ────────────────── */
+.fav-btn {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 1.35rem !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  outline: none !important;
+  margin-top: 0 !important;
+}
+
+.fav-btn:hover {
+  background: rgba(239, 68, 68, 0.12) !important;
+  transform: scale(1.12) !important;
+  box-shadow: none !important;
+}
+
+.fav-btn:active {
+  transform: scale(0.9) !important;
+}
+

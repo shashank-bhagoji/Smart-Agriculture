@@ -352,8 +352,8 @@ exports.detectDisease = async (req, res) => {
       }
     }
 
-    // Reject if it matches screenshot patterns, OR if it has a screenshot filename, OR if it fails the density check (even if renamed)
-    if (hasScreenshotKeyword || isScreenshotResOrDensity || (!hasCropKeyword && !hasLeafKeyword) || (isGenericImage && !hasCropKeyword && !hasLeafKeyword)) {
+    // Reject only if it matches explicit screenshot filename patterns OR if it fails the visual density/resolution checks
+    if (hasScreenshotKeyword || isScreenshotResOrDensity) {
       // Delete the file to clean up uploads
       try {
         if (fs.existsSync(imagePath)) {

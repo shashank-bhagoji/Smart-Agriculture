@@ -45,7 +45,20 @@ router.post("/", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).send("No image uploaded");
   }
-  res.send(`/${req.file.path.replace(/\\/g, "/")}`);
+  try {
+    const fileBuffer = fs.readFileSync(req.file.path);
+    const base64Image = fileBuffer.toString("base64");
+    const mimeType = req.file.mimetype;
+    const dataUri = `data:${mimeType};base64,${base64Image}`;
+    
+    // Clean up temporary local file
+    fs.unlinkSync(req.file.path);
+    
+    res.send(dataUri);
+  } catch (err) {
+    console.error("Base64 conversion error:", err);
+    res.status(500).send("Failed to process uploaded image");
+  }
 });
 
 module.exports = router;

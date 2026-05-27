@@ -11,7 +11,7 @@ export const BACKEND_URL = apiBase.replace(/\/api$/, "");
 // Build a full URL for an uploaded image path (e.g. "/uploads/image-xxx.jpg")
 export const getImageUrl = (imagePath) => {
   if (!imagePath) return null;
-  if (imagePath.startsWith("http")) return imagePath; // already absolute
+  if (imagePath.startsWith("http") || imagePath.startsWith("data:")) return imagePath; // already absolute or base64 Data URI
   return `${BACKEND_URL}${imagePath}`;
 };
 

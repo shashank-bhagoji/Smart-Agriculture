@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import API from "../services/api";
+import API, { getImageUrl } from "../services/api";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -263,7 +263,7 @@ function Profile() {
                 <div key={booking._id} className="card equipment-card" style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", gap: 0 }}>
                   {booking.equipment?.image && (
                     <img 
-                      src={`http://localhost:5000${booking.equipment.image}`} 
+                      src={getImageUrl(booking.equipment.image)} 
                       alt={booking.equipment.name} 
                       style={{ width: "100%", height: "200px", objectFit: "cover", display: "block" }} 
                     />
@@ -293,7 +293,7 @@ function Profile() {
                 <div key={booking._id} className="card" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1rem", padding: "1rem", width: "100%", maxWidth: "400px" }}>
                   {booking.equipment?.image ? (
                     <img 
-                      src={`http://localhost:5000${booking.equipment.image}`} 
+                      src={getImageUrl(booking.equipment.image)} 
                       alt={booking.equipment.name} 
                       style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }} 
                     />
@@ -321,7 +321,7 @@ function Profile() {
                 <div key={item._id} className="card equipment-card" style={{ display: "flex", flexDirection: "column" }}>
                   {item.image && (
                     <img 
-                      src={`http://localhost:5000${item.image}`} 
+                      src={getImageUrl(item.image)} 
                       alt={item.name} 
                       style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "8px 8px 0 0" }} 
                     />
@@ -372,7 +372,7 @@ function Profile() {
                     <div key={item._id} className="card" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1rem", padding: "1rem", width: "100%", maxWidth: "400px" }}>
                       {item.image ? (
                         <img 
-                          src={`http://localhost:5000${item.image}`} 
+                          src={getImageUrl(item.image)} 
                           alt={item.name} 
                           style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }} 
                         />
@@ -414,7 +414,7 @@ function Profile() {
                         {!isService && (
                           item.image ? (
                             <img 
-                              src={`http://localhost:5000${item.image}`} 
+                              src={getImageUrl(item.image)} 
                               alt={item.name} 
                               style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }} 
                             />

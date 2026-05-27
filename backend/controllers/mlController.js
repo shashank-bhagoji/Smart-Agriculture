@@ -664,9 +664,6 @@ exports.detectDisease = async (req, res) => {
       details: "Your local machine is missing Python/TensorFlow. Express fallback bypassed the error by using filename string heuristics to ensure a stunning, responsive demo for your professors!"
     });
   } finally {
-    // Optional: Clean up temporary uploaded files to save disk space
-    // Uncomment if you want to delete uploaded images after classification
-    /*
     try {
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);
@@ -674,6 +671,5 @@ exports.detectDisease = async (req, res) => {
     } catch (e) {
       console.error("Failed to delete temp image:", e.message);
     }
-    */
   }
 };

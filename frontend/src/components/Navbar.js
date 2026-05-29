@@ -89,7 +89,9 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="nav-brand">🌾 AgriShare</Link>
+      <Link to="/" className="nav-brand">
+        Smart Agriculture
+      </Link>
       <div className="nav-links">
         <NavLink to="/" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>{t('home')}</NavLink>
         {userRole !== "owner" && (

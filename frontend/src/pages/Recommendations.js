@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
 
 const getCropInsights = (crop) => {
@@ -203,6 +203,26 @@ const getCropInsights = (crop) => {
 };
 
 function Recommendations() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const userRole = payload.role;
+      if (userRole !== "farmer" && userRole !== "admin") {
+        alert("Access Restricted: Only Farmers and Admins have access to this page.");
+        navigate("/login");
+      }
+    } catch (e) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
+
   const [activeTab, setActiveTab] = useState("crop"); // 'crop' or 'disease'
 
   // Crop Recommendation Form State
@@ -230,7 +250,6 @@ function Recommendations() {
   const [scanError, setScanError] = useState("");
   const [activeTreatmentTab, setActiveTreatmentTab] = useState("organic"); // 'organic' or 'chemical'
 
-  const token = localStorage.getItem("token");
   const headers = { Authorization: `Bearer ${token}` };
 
   const cropInsights = cropResult ? getCropInsights(cropResult.crop) : null;

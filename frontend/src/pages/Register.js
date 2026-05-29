@@ -65,7 +65,7 @@ function Register() {
       setLoading(false);
       return;
     }
-    
+
     try {
       const res = await API.post("/auth/register", payload);
 
@@ -77,7 +77,7 @@ function Register() {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
       }
-      
+
       navigate(form.role === "owner" ? "/profile" : "/equipment");
     } catch (err) {
       console.error(err);
@@ -96,11 +96,11 @@ function Register() {
         </div>
 
         {error && (
-          <div style={{ 
-            background: "rgba(239, 68, 68, 0.1)", 
-            color: "#ef4444", 
-            padding: "1rem", 
-            borderRadius: "12px", 
+          <div style={{
+            background: "rgba(239, 68, 68, 0.1)",
+            color: "#ef4444",
+            padding: "1rem",
+            borderRadius: "12px",
             marginBottom: "1.5rem",
             fontSize: "0.9rem",
             border: "1px solid rgba(239, 68, 68, 0.2)",
@@ -165,19 +165,15 @@ function Register() {
           </div>
         )}
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={loading}
-          style={{ 
-            background: "linear-gradient(135deg, #8b5cf6 0%, #4c1d95 100%)",
-            boxShadow: "0 10px 15px -3px rgba(139, 92, 246, 0.3)"
-          }}
         >
           {loading ? "Creating Account..." : "Get Started"}
         </button>
 
         <p style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>
-          Already have an account? <span onClick={() => navigate("/login")} style={{ color: "#8b5cf6", cursor: "pointer", fontWeight: "600" }}>Login</span>
+          Already have an account? <span onClick={() => navigate("/login")} style={{ color: "var(--primary)", cursor: "pointer", fontWeight: "600" }}>Login</span>
         </p>
       </form>
     </div>

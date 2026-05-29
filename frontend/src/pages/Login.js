@@ -12,11 +12,11 @@ function Login() {
       const res = await API.post("/auth/login", form);
       // Store JWT token
       localStorage.setItem("token", res.data.token);
-      
+
       // Determine role from response and navigate accordingly
       const userRole = res.data.user.role;
       if (userRole === "owner" || userRole === "admin") {
-        navigate("/profile"); 
+        navigate("/profile");
       } else {
         navigate("/equipment");
       }

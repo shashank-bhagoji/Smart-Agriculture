@@ -644,7 +644,6 @@ function Recommendations() {
               </div>
             ) : (
               <div className="card" style={{ background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.1)", borderRadius: "16px", padding: "3rem 2rem", textAlign: "center", opacity: 0.6 }}>
-                <span style={{ fontSize: "3rem" }}>🧐</span>
                 <h3 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>{t("awaiting_analysis")}</h3>
                 <p style={{ fontSize: "0.9rem" }}>{t("provide_farm_params")}</p>
               </div>

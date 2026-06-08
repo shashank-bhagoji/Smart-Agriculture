@@ -1,0 +1,131 @@
+export const ml_kn = {
+  // Agronomic Insights (Recommendations)
+  "High-Moisture Wetland": "ಹೆಚ್ಚು ತೇವಾಂಶವಿರುವ ಗದ್ದೆ",
+  "This crop thrives in high rainfall (above 150-200mm) or standing water conditions typical of wet sub-basins in North Karnataka.": "ಈ ಬೆಳೆಯು ಉತ್ತರ ಕರ್ನಾಟಕದ ಒದ್ದೆಯಾದ ಉಪ-ಜಲಾನಯನ ಪ್ರದೇಶಗಳ ವಿಶಿಷ್ಟವಾದ ಹೆಚ್ಚಿನ ಮಳೆಯ (150-200mm) ಅಥವಾ ನಿಂತ ನೀರಿನ ಸ್ಥಿತಿಗಳಲ್ಲಿ ಅಭಿವೃದ್ಧಿ ಹೊಂದುತ್ತದೆ.",
+  "Heavy Clay Soil Retentive": "ಹೆಚ್ಚು ಜೇಡಿಮಣ್ಣಿನ ಮಣ್ಣು",
+  "Requires heavy clay or alluvial clay loam soil that retains water effectively. Avoid sandy soils.": "ನೀರನ್ನು ಪರಿಣಾಮಕಾರಿಯಾಗಿ ಉಳಿಸಿಕೊಳ್ಳುವ ಭಾರೀ ಜೇಡಿಮಣ್ಣು ಅಥವಾ ಮೆಕ್ಕಲು ಮಣ್ಣಿನ ಅಗತ್ಯವಿದೆ. ಮರಳು ಮಣ್ಣನ್ನು ತಪ್ಪಿಸಿ.",
+  "Paddy Transplanters & Harvesters": "ಭತ್ತ ನಾಟಿ ಮತ್ತು ಕಟಾವು ಯಂತ್ರಗಳು",
+  
+  "Warm Semi-Arid Adaptability": "ಬೆಚ್ಚಗಿನ ಅರೆ-ಶುಷ್ಕ ಹೊಂದಿಕೊಳ್ಳುವಿಕೆ",
+  "Maize is highly adaptable and performs best in sunny conditions with moderate, well-distributed seasonal rainfall.": "ಮೆಕ್ಕೆಜೋಳವು ಹೆಚ್ಚು ಹೊಂದಿಕೊಳ್ಳಬಲ್ಲದು ಮತ್ತು ಮಿತವಾದ, ಚೆನ್ನಾಗಿ ವಿತರಿಸಲಾದ ಕಾಲೋಚಿತ ಮಳೆಯೊಂದಿಗೆ ಬಿಸಿಲಿನ ಸ್ಥಿತಿಯಲ್ಲಿ ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ.",
+  "Well-Drained Loam Setup": "ಚೆನ್ನಾಗಿ ಬರಿದಾದ ಗೋಡು ಮಣ್ಣು",
+  "Ensure deep tilling and ridge-furrow sowing to prevent waterlogging, which severely stunts maize roots.": "ಮೆಕ್ಕೆಜೋಳದ ಬೇರುಗಳನ್ನು ತೀವ್ರವಾಗಿ ಕುಂಠಿತಗೊಳಿಸುವ ನೀರು ನಿಲ್ಲುವುದನ್ನು ತಡೆಯಲು ಆಳವಾದ ಉಳುಮೆ ಮತ್ತು ರಿಡ್ಜ್-ಉಬ್ಬು ಬಿತ್ತನೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
+  "Seeding & Shelling Equipment": "ಬಿತ್ತನೆ ಮತ್ತು ಶೆಲ್ಲಿಂಗ್ ಉಪಕರಣಗಳು",
+
+  "Cool & Dry Rabi Season": "ತಂಪಾದ ಮತ್ತು ಶುಷ್ಕ ಹಿಂಗಾರು ಹವಾಮಾನ",
+  "Ideal for the winter (Rabi) season in North Karnataka, requiring very low rainfall and cool nighttime temperatures.": "ಉತ್ತರ ಕರ್ನಾಟಕದ ಚಳಿಗಾಲದ (ರಬಿ) ಋತುವಿಗೆ ಸೂಕ್ತವಾಗಿದೆ, ಅತಿ ಕಡಿಮೆ ಮಳೆ ಮತ್ತು ತಂಪಾದ ರಾತ್ರಿಯ ತಾಪಮಾನದ ಅಗತ್ಯವಿರುತ್ತದೆ.",
+  "Moisture-Retentive Clay Loam": "ತೇವಾಂಶ ಉಳಿಸಿಕೊಳ್ಳುವ ಜೇಡಿಮಣ್ಣು",
+  "Thrives in deep, black cotton soils that retain moisture from the monsoon season. Avoid over-watering.": "ಮುಂಗಾರು ಋತುವಿನಿಂದ ತೇವಾಂಶವನ್ನು ಉಳಿಸಿಕೊಳ್ಳುವ ಆಳವಾದ ಕಪ್ಪು ಮಣ್ಣಿನಲ್ಲಿ ಅಭಿವೃದ್ಧಿ ಹೊಂದುತ್ತದೆ. ಅತಿಯಾಗಿ ನೀರುಣಿಸುವುದನ್ನು ತಪ್ಪಿಸಿ.",
+  "Seed Drills & Harvesters": "ಸೀಡ್ ಡ್ರಿಲ್ ಮತ್ತು ಕಟಾವು ಯಂತ್ರಗಳು",
+
+  "Drought-Resistant Pulses": "ಬರ ನಿರೋಧಕ ಬೇಳೆಕಾಳುಗಳು",
+  "Pigeonpeas (Tur) are highly drought-tolerant, matching the dry semi-arid climate of Kalaburagi (the Tur bowl of Karnataka).": "ತೊಗರಿ (Tur) ಹೆಚ್ಚು ಬರ-ಸಹಿಷ್ಣುವಾಗಿದ್ದು, ಕಲಬುರಗಿಯ (ಕರ್ನಾಟಕದ ತೊಗರಿ ಕಣಜ) ಒಣ ಅರೆ-ಶುಷ್ಕ ಹವಾಮಾನಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ.",
+  "Deep Alluvial/Black Soil": "ಆಳವಾದ ಮೆಕ್ಕಲು/ಕಪ್ಪು ಮಣ್ಣು",
+  "Requires well-drained soils. Deep tilling is critical to facilitate its deep, moisture-seeking taproot system.": "ಚೆನ್ನಾಗಿ ಬರಿದಾದ ಮಣ್ಣು ಬೇಕು. ಅದರ ಆಳವಾದ, ತೇವಾಂಶ-ಅರಸುವ ತಾಯಿಬೇರು ವ್ಯವಸ್ಥೆಯನ್ನು ಸುಗಮಗೊಳಿಸಲು ಆಳವಾದ ಉಳುಮೆ ಅತ್ಯಗತ್ಯ.",
+  "Broad-Bed Furrow Planters": "ಬ್ರಾಡ್-ಬೆಡ್ ಫರೋ ಪ್ಲಾಂಟರ್ಸ್",
+
+  "Sunny & Dry Harvest Climate": "ಬಿಸಿಲು ಮತ್ತು ಒಣ ಕೊಯ್ಲು ಹವಾಮಾನ",
+  "Requires a long frost-free warm season with ample sunshine and dry conditions during the boll-opening stage.": "ಬೋಲ್-ತೆರೆಯುವ ಹಂತದಲ್ಲಿ ಸಾಕಷ್ಟು ಬಿಸಿಲು ಮತ್ತು ಶುಷ್ಕ ಪರಿಸ್ಥಿತಿಗಳೊಂದಿಗೆ ದೀರ್ಘವಾದ ಹಿಮ-ಮುಕ್ತ ಬೆಚ್ಚಗಿನ ಋತುವಿನ ಅಗತ್ಯವಿದೆ.",
+  "Regur (Black Cotton) Soil": "ರೆಗುರ್ (ಕಪ್ಪು ಹತ್ತಿ) ಮಣ್ಣು",
+  "Thrives in deep clayey black soils. Apply balanced Nitrogen and Potassium (K) to support strong fiber development.": "ಆಳವಾದ ಜೇಡಿಮಣ್ಣಿನ ಕಪ್ಪು ಮಣ್ಣಿನಲ್ಲಿ ಬೆಳೆಯುತ್ತದೆ. ಬಲವಾದ ಫೈಬರ್ ಬೆಳವಣಿಗೆಯನ್ನು ಬೆಂಬಲಿಸಲು ಸಮತೋಲಿತ ಸಾರಜನಕ ಮತ್ತು ಪೊಟ್ಯಾಸಿಯಮ್ ಅನ್ನು ಅನ್ವಯಿಸಿ.",
+  "Cotton Pickers & Subsoilers": "ಹತ್ತಿ ಕೀಳುವ ಯಂತ್ರಗಳು",
+
+  "Dry Summer & Mild Winters": "ಶುಷ್ಕ ಬೇಸಿಗೆ ಮತ್ತು ಸೌಮ್ಯ ಚಳಿಗಾಲ",
+  "Matches dry climatic zones like Vijayapura, where low humidity during ripening prevents fungal mildew infections.": "ವಿಜಯಪುರದಂತಹ ಶುಷ್ಕ ಹವಾಮಾನ ವಲಯಗಳಿಗೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ, ಅಲ್ಲಿ ಮಾಗುವ ಸಮಯದಲ್ಲಿ ಕಡಿಮೆ ಆರ್ದ್ರತೆಯು ಶಿಲೀಂಧ್ರಗಳ ಸೋಂಕನ್ನು ತಡೆಯುತ್ತದೆ.",
+  "Gravelly & Sandy Loams": "ಜಲ್ಲಿ ಮತ್ತು ಮರಳು ಗೋಡುಮಣ್ಣು",
+  "Requires well-drained gravelly or sandy loam soils. Heavy fertilizer feeding of Potassium is vital for high brix sweetening.": "ಚೆನ್ನಾಗಿ ಬರಿದಾದ ಮರಳು ಮಿಶ್ರಿತ ಮಣ್ಣು ಬೇಕು. ಹಣ್ಣು ಸಿಹಿಯಾಗಲು ಪೊಟ್ಯಾಸಿಯಮ್ ರಸಗೊಬ್ಬರ ಅತ್ಯಗತ್ಯ.",
+  "Drip Irrigation & Trellis Hire": "ಹನಿ ನೀರಾವರಿ ಮತ್ತು ಟ್ರೆಲ್ಲಿಸ್",
+
+  "Semi-Arid Arid Climate": "ಅರೆ-ಶುಷ್ಕ ಹವಾಮಾನ",
+  "Extremely well-suited for dry, warm districts. Dry air during fruit development enhances skin color and quality.": "ಒಣ, ಬೆಚ್ಚಗಿನ ಜಿಲ್ಲೆಗಳಿಗೆ ಅತ್ಯಂತ ಸೂಕ್ತವಾಗಿದೆ. ಹಣ್ಣಿನ ಬೆಳವಣಿಗೆಯ ಸಮಯದಲ್ಲಿ ಶುಷ್ಕ ಗಾಳಿಯು ಚರ್ಮದ ಬಣ್ಣ ಮತ್ತು ಗುಣಮಟ್ಟವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ.",
+  "Light Sandy-Loam/Clay-Loam": "ಹಗುರವಾದ ಮರಳು-ಮಣ್ಣು",
+  "Prefers well-drained loams. Highly sensitive to waterlogging; drip irrigation and organic mulching are mandatory.": "ಚೆನ್ನಾಗಿ ಬರಿದಾದ ಮಣ್ಣನ್ನು ಆದ್ಯತೆ ನೀಡುತ್ತದೆ. ನೀರು ನಿಲ್ಲಲು ಹೆಚ್ಚು ಸೂಕ್ಷ್ಮ; ಹನಿ ನೀರಾವರಿ ಮತ್ತು ಸಾವಯವ ಮಲ್ಚಿಂಗ್ ಕಡ್ಡಾಯವಾಗಿದೆ.",
+  "Export Logistics & Pruning Tools": "ರಫ್ತು ಮತ್ತು ಸಮರುವಿಕೆಯನ್ನು ಮಾಡುವ ಉಪಕರಣಗಳು",
+
+  "Hot & Sunny Summer Crop": "ಬಿಸಿ ಮತ್ತು ಬಿಸಿಲಿನ ಬೇಸಿಗೆಯ ಬೆಳೆ",
+  "Requires warm daytime temperatures (above 25°C) and dry air. Ideal for summer riverbed or drip irrigation farming.": "ಹಗಲಿನ ತಾಪಮಾನ (25°C ಗಿಂತ ಹೆಚ್ಚು) ಮತ್ತು ಶುಷ್ಕ ಗಾಳಿಯ ಅಗತ್ಯವಿದೆ. ಬೇಸಿಗೆಯ ನದೀಪಾತ್ರ ಅಥವಾ ಹನಿ ನೀರಾವರಿ ಕೃಷಿಗೆ ಸೂಕ್ತವಾಗಿದೆ.",
+  "Sandy/Riverbed Loams": "ಮರಳು/ನದೀಪಾತ್ರದ ಮಣ್ಣು",
+  "Prefers very light, warm sandy loam soils. Utilize plastic mulching to protect vines from soil contact and disease.": "ಬಹಳ ಹಗುರವಾದ, ಬೆಚ್ಚಗಿನ ಮರಳಿನ ಮಣ್ಣನ್ನು ಆದ್ಯತೆ ನೀಡುತ್ತದೆ. ಬಳ್ಳಿಗಳನ್ನು ರೋಗಗಳಿಂದ ರಕ್ಷಿಸಲು ಪ್ಲಾಸ್ಟಿಕ್ ಮಲ್ಚಿಂಗ್ ಬಳಸಿ.",
+  "Drip Systems & Mulch Layers": "ಹನಿ ನೀರಾವರಿ ಮತ್ತು ಮಲ್ಚಿಂಗ್",
+
+  "Dry & Warm Climatic Profiles": "ಶುಷ್ಕ ಮತ್ತು ಬೆಚ್ಚಗಿನ ಹವಾಮಾನ",
+  "Requires warm, dry weather and high sunshine hours. Excess rainfall during ripening will dilute sugar levels.": "ಬೆಚ್ಚಗಿನ, ಶುಷ್ಕ ಹವಾಮಾನ ಮತ್ತು ಹೆಚ್ಚು ಬಿಸಿಲಿನ ಗಂಟೆಗಳ ಅಗತ್ಯವಿದೆ. ಹಣ್ಣಾಗುವಾಗ ಅತಿಯಾದ ಮಳೆಯು ಸಕ್ಕರೆಯ ಮಟ್ಟವನ್ನು ದುರ್ಬಲಗೊಳಿಸುತ್ತದೆ.",
+  "Sandy Loams with High Drainage": "ಹೆಚ್ಚಿನ ಒಳಚರಂಡಿ ಹೊಂದಿರುವ ಮರಳು ಮಣ್ಣು",
+  "Ensure deep bed-preparation to avoid root rot. High potassium inputs ensure excellent aroma and sweet flesh.": "ಬೇರು ಕೊಳೆಯುವುದನ್ನು ತಪ್ಪಿಸಲು ಆಳವಾದ ಹಾಸಿಗೆ ಸಿದ್ಧತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ. ಅಧಿಕ ಪೊಟ್ಯಾಸಿಯಮ್ ಸಿಹಿ ರುಚಿಯನ್ನು ಖಚಿತಪಡಿಸುತ್ತದೆ.",
+  "Bed Formers & Planters": "ಬೆಡ್ ಫಾರ್ಮರ್ಸ್ ಮತ್ತು ಪ್ಲಾಂಟರ್ಸ್",
+
+  "Humid Tropical High-Rainfall": "ಆರ್ದ್ರ ಉಷ್ಣವಲಯದ ಅಧಿಕ ಮಳೆ",
+  "Requires warm, humid climates with steady water supply. Highly sensitive to strong winds which rip the leaf canopy.": "ಸ್ಥಿರವಾದ ನೀರಿನ ಪೂರೈಕೆಯೊಂದಿಗೆ ಬೆಚ್ಚಗಿನ, ಆರ್ದ್ರ ಹವಾಮಾನದ ಅಗತ್ಯವಿದೆ. ಎಲೆಗಳನ್ನು ಹರಿದು ಹಾಕುವ ಬಲವಾದ ಗಾಳಿಗೆ ಹೆಚ್ಚು ಸೂಕ್ಷ್ಮವಾಗಿರುತ್ತದೆ.",
+  "Rich Organic-Heavy Loam": "ಸಾವಯವ ಭರಿತ ಮಣ್ಣು",
+  "Very heavy feeder of Nitrogen and Potassium. Apply abundant organic compost and maintain thick crop mulching.": "ಸಾರಜನಕ ಮತ್ತು ಪೊಟ್ಯಾಸಿಯಮ್ ಅತ್ಯಗತ್ಯ. ಹೇರಳವಾಗಿ ಸಾವಯವ ಗೊಬ್ಬರವನ್ನು ಅನ್ವಯಿಸಿ ಮತ್ತು ದಪ್ಪ ಬೆಳೆ ಮಲ್ಚಿಂಗ್ ಅನ್ನು ನಿರ್ವಹಿಸಿ.",
+  "Drip Networks & compost Spreaders": "ಹನಿ ನೀರಾವರಿ ಮತ್ತು ಕಾಂಪೋಸ್ಟ್ ಸ್ಪ್ರೆಡರ್ಸ್",
+
+  "Warm Summer Ripening": "ಬೆಚ್ಚಗಿನ ಬೇಸಿಗೆ ಮಾಗುವಿಕೆ",
+  "Requires hot, dry summers for optimal fruit ripening and sweetening. High humidity induces pest problems.": "ಹಣ್ಣು ಮಾಗಲು ಮತ್ತು ಸಿಹಿಯಾಗಲು ಬಿಸಿ, ಶುಷ್ಕ ಬೇಸಿಗೆಯ ಅಗತ್ಯವಿದೆ. ಹೆಚ್ಚಿನ ಆರ್ದ್ರತೆಯು ಕೀಟ ಸಮಸ್ಯೆಗಳನ್ನು ಉಂಟುಮಾಡುತ್ತದೆ.",
+  "Deep Alluvial Loam": "ಆಳವಾದ ಮೆಕ್ಕಲು ಮಣ್ಣು",
+  "Requires deep soil profiles for its extensive root systems. Practice basin water harvesting around tree canopies.": "ಅದರ ವ್ಯಾಪಕವಾದ ಬೇರಿನ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಆಳವಾದ ಮಣ್ಣಿನ ಅಗತ್ಯವಿದೆ. ಮರಗಳ ಸುತ್ತಲೂ ಜಲಾನಯನ ನೀರು ಕೊಯ್ಲು ಅಭ್ಯಾಸ ಮಾಡಿ.",
+  "Orchard Sprayers & Pickers": "ತೋಟದ ಸ್ಪ್ರೇಯರ್‌ಗಳು ಮತ್ತು ಪಿಕ್ಕರ್‌ಗಳು",
+  
+  // Titles
+  "Agronomic Insights & Actions:": "ಕೃಷಿ ಒಳನೋಟಗಳು ಮತ್ತು ಕ್ರಿಯೆಗಳು:",
+
+  // AI Leaf Advisor Diseases and Solutions (General translations)
+  "Healthy Leaf": "ಆರೋಗ್ಯಕರ ಎಲೆ",
+  "The leaf appears green, vibrant, and free from spots, discoloration, lesions, or insect webbing.": "ಎಲೆಯು ಹಸಿರಾಗಿ, ರೋಮಾಂಚಕವಾಗಿ ಮತ್ತು ಚುಕ್ಕೆಗಳು, ಬಣ್ಣಬಣ್ಣಗಳು, ಗಾಯಗಳು ಅಥವಾ ಕೀಟಗಳ ಬಲೆಗಳಿಂದ ಮುಕ್ತವಾಗಿ ಕಾಣುತ್ತದೆ.",
+  "Maintain healthy watering practices (early morning root watering). Apply organic compost or liquid seaweed fertilizer monthly.": "ಆರೋಗ್ಯಕರ ನೀರಿನ ಅಭ್ಯಾಸಗಳನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಿ (ಬೆಳಿಗ್ಗೆ ಬೇರಿಗೆ ನೀರುಹಾಕುವುದು). ಮಾಸಿಕ ಸಾವಯವ ಗೊಬ್ಬರವನ್ನು ಅನ್ವಯಿಸಿ.",
+  "No chemical application required. Avoid prophylactic fungicide sprays to preserve beneficial soil microbes.": "ಯಾವುದೇ ರಾಸಾಯನಿಕ ಅಪ್ಲಿಕೇಶನ್ ಅಗತ್ಯವಿಲ್ಲ. ಪ್ರಯೋಜನಕಾರಿ ಮಣ್ಣಿನ ಸೂಕ್ಷ್ಮಜೀವಿಗಳನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಲು ಶಿಲೀಂಧ್ರನಾಶಕ ಸ್ಪ್ರೇಗಳನ್ನು ತಪ್ಪಿಸಿ.",
+  "Continue standard preventive care: clean weeding, crop rotation, and regular monitoring for early signs of disease.": "ಪ್ರಮಾಣಿತ ತಡೆಗಟ್ಟುವ ಆರೈಕೆಯನ್ನು ಮುಂದುವರಿಸಿ: ಕಳೆ ಕಿತ್ತಲು, ಬೆಳೆ ತಿರುಗುವಿಕೆ ಮತ್ತು ರೋಗದ ಆರಂಭಿಕ ಚಿಹ್ನೆಗಳಿಗಾಗಿ ನಿಯಮಿತ ಮೇಲ್ವಿಚಾರಣೆ.",
+
+  // Common phrases from disease solutions
+  "Discolored spots, structural curling, or tissue lesions visible on the leaf surface.": "ಎಲೆಯ ಮೇಲ್ಮೈಯಲ್ಲಿ ಬಣ್ಣಬಣ್ಣದ ಕಲೆಗಳು, ಸುರುಳಿಯಾಗುವಿಕೆ ಅಥವಾ ಗಾಯಗಳು ಕಂಡುಬರುತ್ತವೆ.",
+  "Apply general-purpose organic remedies like dilute Neem oil spray (2ml per liter of water) or biological bio-fungicides like Trichoderma. Improve light exposure and avoid overhead watering.": "ಹೊಳೆಯುವ ಬೇವಿನ ಎಣ್ಣೆ ಸಿಂಪಡಣೆ ಅಥವಾ ಟ್ರೈಕೊಡರ್ಮಾದಂತಹ ಜೈವಿಕ-ಶಿಲೀಂಧ್ರನಾಶಕಗಳಂತಹ ಸಾಮಾನ್ಯ ಉದ್ದೇಶದ ಸಾವಯವ ಪರಿಹಾರಗಳನ್ನು ಅನ್ವಯಿಸಿ. ಬೆಳಕಿನ ಮಾನ್ಯತೆ ಸುಧಾರಿಸಿ ಮತ್ತು ಮೇಲಿನಿಂದ ನೀರುಣಿಸುವುದನ್ನು ತಪ್ಪಿಸಿ.",
+  "Apply standard contact copper-based fungicide or Mancozeb as recommended by local agro-extension officers.": "ಸ್ಥಳೀಯ ಕೃಷಿ ವಿಸ್ತರಣಾ ಅಧಿಕಾರಿಗಳು ಶಿಫಾರಸು ಮಾಡಿದಂತೆ ಗುಣಮಟ್ಟದ ತಾಮ್ರ-ಆಧಾರಿತ ಶಿಲೀಂಧ್ರನಾಶಕ ಅಥವಾ ಮ್ಯಾಂಕೋಜೆಬ್ ಅನ್ನು ಅನ್ವಯಿಸಿ.",
+  "Clean garden tools, maintain crop rotation, space out plants, and remove infected plant debris immediately.": "ಉದ್ಯಾನ ಪರಿಕರಗಳನ್ನು ಸ್ವಚ್ಛಗೊಳಿಸಿ, ಬೆಳೆ ತಿರುಗುವಿಕೆಯನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಿ, ಸಸ್ಯಗಳನ್ನು ಅಂತರದಲ್ಲಿಡಿ ಮತ್ತು ಸೋಂಕಿತ ಸಸ್ಯದ ಅವಶೇಷಗಳನ್ನು ತಕ್ಷಣವೇ ತೆಗೆದುಹಾಕಿ.",
+  
+  // Weather descriptions
+  "clear sky": "ಸ್ವಚ್ಛ ಆಕಾಶ",
+  "partly cloudy": "ಭಾಗಶಃ ಮೋಡ ಕವಿದಿದೆ",
+  "foggy": "ಮಂಜು ಮುಸುಕಿದೆ",
+  "drizzle": "ತುಂತುರು ಮಳೆ",
+  "rain": "ಮಳೆ",
+  "snow": "ಹಿಮ",
+  "rain showers": "ಮಳೆಯ ಸುರಿಮಳೆ",
+  "snow showers": "ಹಿಮ ಸುರಿಮಳೆ",
+  "thunderstorm": "ಗುಡುಗು ಸಹಿತ ಮಳೆ",
+
+  // Missing Weather UI Strings
+  "Humidity": "ಆರ್ದ್ರತೆ",
+  "Wind": "ಗಾಳಿ",
+  "Feels like": "ಅನಿಸುವಿಕೆ",
+  "Agricultural Advice:": "ಕೃಷಿ ಸಲಹೆ:",
+  "Precipitation expected. Delay any pesticide spraying or irrigation. Ensure proper drainage in low-lying areas.": "ಮಳೆಯ ನಿರೀಕ್ಷೆಯಿದೆ. ಕೀಟನಾಶಕ ಸಿಂಪಡಣೆ ಅಥವಾ ನೀರಾವರಿಯನ್ನು ವಿಳಂಬಗೊಳಿಸಿ. ತಗ್ಗು ಪ್ರದೇಶಗಳಲ್ಲಿ ಸರಿಯಾದ ಒಳಚರಂಡಿಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
+  "Clear skies ahead. Excellent window for harvesting, drying crops, or applying fertilizers.": "ಮುಂದೆ ಸ್ವಚ್ಛ ಆಕಾಶ. ಕೊಯ್ಲು, ಬೆಳೆಗಳನ್ನು ಒಣಗಿಸಲು ಅಥವಾ ರಸಗೊಬ್ಬರಗಳನ್ನು ಅನ್ವಯಿಸಲು ಅತ್ಯುತ್ತಮ ಸಮಯ.",
+  "Moderate conditions. Good for general field maintenance. Keep an eye on moisture levels.": "ಮಧ್ಯಮ ಪರಿಸ್ಥಿತಿಗಳು. ಸಾಮಾನ್ಯ ಕ್ಷೇತ್ರ ನಿರ್ವಹಣೆಗೆ ಒಳ್ಳೆಯದು. ತೇವಾಂಶದ ಮಟ್ಟವನ್ನು ಗಮನದಲ್ಲಿರಿಸಿಕೊಳ್ಳಿ.",
+  "TODAY": "ಇಂದು",
+  "Karnataka": "ಕರ್ನಾಟಕ",
+  "India": "ಭಾರತ",
+  "Uttara Kannada": "ಉತ್ತರ ಕನ್ನಡ",
+  "Sirsi - Hubbali Highway": "ಸಿರ್ಸಿ - ಹುಬ್ಬಳ್ಳಿ ಹೆದ್ದಾರಿ",
+
+  // Missing ML UI Strings
+  "Built for Karnataka Farmers": "ಕರ್ನಾಟಕದ ರೈತರಿಗಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ",
+  "AI ADVISOR": "ಎಐ ಸಲಹೆಗಾರ",
+  "DIAGNOSED CONDITION": "ರೋಗನಿರ್ಣಯದ ಸ್ಥಿತಿ",
+  "Crop:": "ಬೆಳೆ:",
+  "Confidence": "ವಿಶ್ವಾಸ",
+  "Observed Symptoms:": "ಗಮನಿಸಿದ ಲಕ್ಷಣಗಳು:",
+  "Treatment & Control Advisory": "ಚಿಕಿತ್ಸೆ ಮತ್ತು ನಿಯಂತ್ರಣ ಸಲಹೆ",
+  "Preventive Action & Best Practices:": "ತಡೆಗಟ್ಟುವ ಕ್ರಮ ಮತ್ತು ಉತ್ತಮ ಅಭ್ಯಾಸಗಳು:",
+  "Organic & Biological Remedies": "ಸಾವಯವ ಮತ್ತು ಜೈವಿಕ ಪರಿಹಾರಗಳು",
+  "Chemical Control (Recommended)": "ರಾಸಾಯನಿಕ ನಿಯಂತ್ರಣ (ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ)",
+  "Deep Learning (MobileNetV2 CNN)": "ಡೀಪ್ ಲರ್ನಿಂಗ್ (ಮೊಬೈಲ್ ನೆಟ್ ವಿ2 ಸಿಎನ್ಎನ್)",
+  "Machine Learning (RandomForest)": "ಯಂತ್ರ ಕಲಿಕೆ (ರಾಂಡಮ್ ಫಾರೆಸ್ಟ್)",
+
+  // Missing Specific Disease Responses
+  "Cotton": "ಹತ್ತಿ",
+  "Bacterial Blight (Angular Leaf Spot)": "ಬ್ಯಾಕ್ಟೀರಿಯಲ್ ಬ್ಲೈಟ್ (ಆಂಗ್ಯುಲರ್ ಲೀಫ್ ಸ್ಪಾಟ್)",
+  "Water-soaked angular spots on leaves, turning brown to black, bounded by leaf veins. Can cause defoliation and boll rot.": "ಎಲೆಗಳ ಮೇಲೆ ನೀರು-ನೆನೆಸಿದ ಕೋನೀಯ ಕಲೆಗಳು, ಎಲೆಗಳ ರಕ್ತನಾಳಗಳಿಂದ ಸುತ್ತುವರಿದ ಕಂದು ಬಣ್ಣದಿಂದ ಕಪ್ಪು ಬಣ್ಣಕ್ಕೆ ತಿರುಗುತ್ತವೆ. ಇದು ಎಲೆಗಳು ಉದುರಲು ಮತ್ತು ಬೋಲ್ ಕೊಳೆಯಲು ಕಾರಣವಾಗಬಹುದು.",
+  "Spray biological control agents like Pseudomonas fluorescens. Ensure crop debris destruction and field sanitation.": "ಸ್ಯೂಡೋಮೊನಾಸ್ ಫ್ಲೋರೊಸೆನ್ಸ್‌ನಂತಹ ಜೈವಿಕ ನಿಯಂತ್ರಣ ಏಜೆಂಟ್‌ಗಳನ್ನು ಸಿಂಪಡಿಸಿ. ಬೆಳೆ ಅವಶೇಷಗಳ ನಾಶ ಮತ್ತು ಜಮೀನಿನ ನೈರ್ಮಲ್ಯವನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
+  "Spray Copper Oxychloride mixed with Streptocycline. Avoid overhead sprinkler irrigation.": "ಸ್ಟ್ರೆಪ್ಟೊಸೈಕ್ಲಿನ್ ನೊಂದಿಗೆ ಬೆರೆಸಿದ ಕಾಪರ್ ಆಕ್ಸಿಕ್ಲೋರೈಡ್ ಅನ್ನು ಸಿಂಪಡಿಸಿ. ಸ್ಪ್ರಿಂಕ್ಲರ್ ನೀರಾವರಿಯನ್ನು ತಪ್ಪಿಸಿ.",
+  "Use certified disease-resistant seeds, follow proper crop rotation, and avoid excessive nitrogen fertilizer.": "ಪ್ರಮಾಣೀಕೃತ ರೋಗ-ನಿರೋಧಕ ಬೀಜಗಳನ್ನು ಬಳಸಿ, ಸರಿಯಾದ ಬೆಳೆ ತಿರುಗುವಿಕೆಯನ್ನು ಅನುಸರಿಸಿ ಮತ್ತು ಅತಿಯಾದ ಸಾರಜನಕ ಗೊಬ್ಬರವನ್ನು ತಪ್ಪಿಸಿ."
+};

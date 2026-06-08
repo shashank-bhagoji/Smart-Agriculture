@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import API from "../services/api";
 
 const getCropInsights = (crop) => {
@@ -203,6 +204,7 @@ const getCropInsights = (crop) => {
 };
 
 function Recommendations() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -377,10 +379,10 @@ function Recommendations() {
   return (
     <div className="container" style={{ maxWidth: "1000px", paddingBottom: "3rem" }}>
       <h2 className="page-title" style={{ fontSize: "2.2rem", fontWeight: "bold", textAlign: "center", marginBottom: "0.25rem" }}>
-        🌾 AI Agronomic Advisor
+        🌾 {t("ai_advisor_title")}
       </h2>
       <p className="page-subtitle" style={{ textAlign: "center", opacity: 0.8, marginBottom: "2rem", fontSize: "1.05rem" }}>
-        Real-time soil classification and deep-learning leaf diagnosis customized for North Karnataka farmers.
+        {t("ai_advisor_subtitle")}
       </p>
 
       {/* Tabs Controller */}
@@ -390,14 +392,14 @@ function Recommendations() {
           className={activeTab === "crop" ? "btn-primary" : "btn-secondary"}
           style={{ padding: "0.75rem 1.5rem", borderRadius: "12px", border: activeTab === "crop" ? "none" : "1px solid var(--border-color)", background: activeTab === "crop" ? "var(--primary)" : "transparent", color: activeTab === "crop" ? "#fff" : "var(--text-muted)", cursor: "pointer", transition: "all 0.3s ease" }}
         >
-          🌱 Crop Recommendation
+          🌱 {t("tab_crop_rec")}
         </button>
         <button
           onClick={() => setActiveTab("disease")}
           className={activeTab === "disease" ? "btn-primary" : "btn-secondary"}
           style={{ padding: "0.75rem 1.5rem", borderRadius: "12px", border: activeTab === "disease" ? "none" : "1px solid var(--border-color)", background: activeTab === "disease" ? "var(--primary)" : "transparent", color: activeTab === "disease" ? "#fff" : "var(--text-muted)", cursor: "pointer", transition: "all 0.3s ease" }}
         >
-          🔬 AI Leaf Scanner
+          🔬 {t("tab_leaf_scan")}
         </button>
       </div>
 
@@ -408,13 +410,13 @@ function Recommendations() {
           {/* Inputs Section */}
           <div className="card" style={{ background: "var(--bg-glass)", backdropFilter: "blur(12px)", border: "1px solid var(--border-color)", borderRadius: "16px", padding: "1.5rem" }}>
             <h3 style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "1.2rem", color: "var(--primary)", marginBottom: "1.5rem" }}>
-              <span>Enter Parameters</span>
+              <span>{t("enter_parameters")}</span>
               <button
                 onClick={handleAutoDetectWeather}
                 disabled={loadingWeather}
                 style={{ fontSize: "0.8rem", padding: "0.4rem 0.8rem", background: "rgba(16, 185, 129, 0.1)", color: "var(--primary)", border: "1px solid var(--border-color)", borderRadius: "8px", cursor: "pointer", display: "flex", alignItems: "center", gap: "5px" }}
               >
-                {loadingWeather ? "🔄 Loading..." : "🌦️ Get Live Weather"}
+                {loadingWeather ? `🔄 ${t("loading")}` : `🌦️ ${t("get_live_weather")}`}
               </button>
             </h3>
 
@@ -428,7 +430,7 @@ function Recommendations() {
               {/* Soil Macronutrients */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem" }}>
                 <div className="input-group">
-                  <label style={{ fontSize: "0.8rem", opacity: 0.8 }}>Nitrogen (N)</label>
+                  <label style={{ fontSize: "0.8rem", opacity: 0.8 }}>{t("nitrogen_n")}</label>
                   <input
                     type="number"
                     value={cropForm.N}
@@ -440,7 +442,7 @@ function Recommendations() {
                   />
                 </div>
                 <div className="input-group">
-                  <label style={{ fontSize: "0.8rem", opacity: 0.8 }}>Phosphorus (P)</label>
+                  <label style={{ fontSize: "0.8rem", opacity: 0.8 }}>{t("phosphorus_p")}</label>
                   <input
                     type="number"
                     value={cropForm.P}
@@ -452,7 +454,7 @@ function Recommendations() {
                   />
                 </div>
                 <div className="input-group">
-                  <label style={{ fontSize: "0.8rem", opacity: 0.8 }}>Potassium (K)</label>
+                  <label style={{ fontSize: "0.8rem", opacity: 0.8 }}>{t("potassium_k")}</label>
                   <input
                     type="number"
                     value={cropForm.K}
@@ -468,7 +470,7 @@ function Recommendations() {
               {/* pH Level */}
               <div className="input-group">
                 <label style={{ fontSize: "0.8rem", opacity: 0.8, display: "flex", justifyContent: "space-between" }}>
-                  <span>Soil pH (Acidity)</span>
+                  <span>{t("soil_ph")}</span>
                   <span style={{ color: "var(--primary)", fontWeight: "bold" }}>{cropForm.ph}</span>
                 </label>
                 <input
@@ -486,7 +488,7 @@ function Recommendations() {
               {/* Environmental metrics */}
               <div className="input-group">
                 <label style={{ fontSize: "0.8rem", opacity: 0.8, display: "flex", justifyContent: "space-between" }}>
-                  <span>Temperature (°C)</span>
+                  <span>{t("temperature_c")}</span>
                   <span>{cropForm.temperature}°C</span>
                 </label>
                 <input
@@ -501,7 +503,7 @@ function Recommendations() {
 
               <div className="input-group">
                 <label style={{ fontSize: "0.8rem", opacity: 0.8, display: "flex", justifyContent: "space-between" }}>
-                  <span>Humidity (%)</span>
+                  <span>{t("humidity_pct")}</span>
                   <span>{cropForm.humidity}%</span>
                 </label>
                 <input
@@ -516,7 +518,7 @@ function Recommendations() {
 
               <div className="input-group">
                 <label style={{ fontSize: "0.8rem", opacity: 0.8, display: "flex", justifyContent: "space-between" }}>
-                  <span>Rainfall (mm)</span>
+                  <span>{t("rainfall_mm")}</span>
                   <span>{cropForm.rainfall} mm</span>
                 </label>
                 <input
@@ -537,7 +539,7 @@ function Recommendations() {
                 disabled={cropLoading}
                 style={{ padding: "0.85rem", borderRadius: "10px", fontSize: "1rem", fontWeight: "bold", background: "var(--primary)", border: "none", cursor: "pointer" }}
               >
-                {cropLoading ? "🧠 AI Analyzing..." : "🔍 Recommend Best Crop"}
+                {cropLoading ? `🧠 ${t("ai_analyzing")}` : `🔍 ${t("recommend_best_crop")}`}
               </button>
             </form>
           </div>
@@ -545,20 +547,23 @@ function Recommendations() {
           {/* Results Section */}
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
             {cropResult ? (
-              <div className="card" style={{ background: "var(--bg-glass)", backdropFilter: "blur(12px)", border: "1px solid var(--border-color)", borderRadius: "16px", padding: "2rem", textAlign: "center" }}>
-                <span style={{ fontSize: "3rem" }}>🌾</span>
-                <p style={{ fontSize: "0.85rem", textTransform: "uppercase", tracking: "wider", opacity: 0.6, marginBottom: "0.25rem" }}>
+              <div style={{ marginTop: "3rem", animation: "slideUp 0.5s ease" }}>
+                <h3 style={{ textAlign: "center", fontSize: "0.8rem", letterSpacing: "2px", color: "var(--text-muted)", marginBottom: "1.5rem", textTransform: "uppercase" }}>
                   AI RECOMMENDATION
-                </p>
-                <h2 style={{ fontSize: "2.5rem", fontWeight: "bold", color: "var(--warning-text)", textTransform: "capitalize", margin: "0.5rem 0" }}>
-                  {cropResult.crop}
-                </h2>
-                <div style={{ display: "inline-block", background: "rgba(16, 185, 129, 0.1)", color: "var(--primary)", padding: "0.4rem 1rem", borderRadius: "50px", fontSize: "0.85rem", fontWeight: "bold", marginBottom: "1.5rem" }}>
-                  {cropResult.method}
+                </h3>
+
+                <h1 style={{ fontSize: "3.5rem", textAlign: "center", color: "var(--primary-color)", margin: "0 0 1rem 0", fontWeight: "900", letterSpacing: "-1px" }}>
+                  {t(`crop_${(cropResult.crop || "").toLowerCase()}`, cropResult.crop)}
+                </h1>
+
+                <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+                  <span style={{ background: "rgba(16, 185, 129, 0.1)", color: "var(--primary-color)", padding: "0.5rem 1.5rem", borderRadius: "20px", fontSize: "0.9rem", fontWeight: "bold" }}>
+                    {cropResult.method.includes("Machine Learning") ? t("ml_method", cropResult.method) : t("fallback_method", cropResult.method)}
+                  </span>
                 </div>
 
-                <p style={{ fontSize: "0.95rem", lineHeight: "1.6", opacity: 0.9, marginBottom: "1.5rem", padding: "0 1rem" }}>
-                  {cropResult.details}
+                <p style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 3rem", fontSize: "1.05rem", lineHeight: "1.6", opacity: 0.8 }}>
+                  {cropResult.details.includes("powered by your trained Scikit-Learn") ? t("ml_details", cropResult.details) : cropResult.details}
                 </p>
 
                 {/* Additional regional insights */}
@@ -582,10 +587,10 @@ function Recommendations() {
                       <span style={{ fontSize: "1.25rem", marginTop: "2px" }}>{cropInsights?.climate?.icon || "📍"}</span>
                       <div>
                         <h5 style={{ margin: "0 0 0.2rem 0", fontSize: "0.85rem", fontWeight: "bold", color: "var(--info-text)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                          {cropInsights?.climate?.title}
+                          {cropInsights?.climate?.title ? t(cropInsights.climate.title, cropInsights.climate.title) : ""}
                         </h5>
                         <p style={{ margin: 0, fontSize: "0.85rem", lineHeight: "1.4", opacity: 0.9 }}>
-                          {cropInsights?.climate?.text}
+                          {cropInsights?.climate?.text ? t(cropInsights.climate.text, cropInsights.climate.text) : ""}
                         </p>
                       </div>
                     </div>
@@ -604,10 +609,10 @@ function Recommendations() {
                       <span style={{ fontSize: "1.25rem", marginTop: "2px" }}>{cropInsights?.soil?.icon || "🚜"}</span>
                       <div>
                         <h5 style={{ margin: "0 0 0.2rem 0", fontSize: "0.85rem", fontWeight: "bold", color: "var(--warning-text)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                          {cropInsights?.soil?.title}
+                          {cropInsights?.soil?.title ? t(cropInsights.soil.title, cropInsights.soil.title) : ""}
                         </h5>
                         <p style={{ margin: 0, fontSize: "0.85rem", lineHeight: "1.4", opacity: 0.9 }}>
-                          {cropInsights?.soil?.text}
+                          {cropInsights?.soil?.text ? t(cropInsights.soil.text, cropInsights.soil.text) : ""}
                         </p>
                       </div>
                     </div>
@@ -626,10 +631,10 @@ function Recommendations() {
                       <span style={{ fontSize: "1.25rem", marginTop: "2px" }}>🌱</span>
                       <div>
                         <h5 style={{ margin: "0 0 0.2rem 0", fontSize: "0.85rem", fontWeight: "bold", color: "var(--success-text)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                          {cropInsights?.marketplace?.title || "Marketplace & Resources"}
+                          {cropInsights?.marketplace?.title ? t(cropInsights.marketplace.title, cropInsights.marketplace.title) : "Marketplace & Resources"}
                         </h5>
                         <p style={{ margin: 0, fontSize: "0.85rem", lineHeight: "1.4", opacity: 0.9 }}>
-                          Check our <Link to="/service-marketplace" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>Service Marketplace</Link> or <Link to="/equipment" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>Equipment List</Link> to hire planters/harvesters suitable for <span style={{ textTransform: "capitalize", fontWeight: "bold", color: "var(--warning-text)" }}>{cropResult.crop}</span>.
+                          Check our <Link to="/service-marketplace" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>Service Marketplace</Link> or <Link to="/equipment" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>Equipment List</Link> to hire planters/harvesters suitable for <span style={{ textTransform: "capitalize", fontWeight: "bold", color: "var(--warning-text)" }}>{t(`crop_${(cropResult.crop || "").toLowerCase()}`, cropResult.crop)}</span>.
                         </p>
                       </div>
                     </div>
@@ -640,8 +645,8 @@ function Recommendations() {
             ) : (
               <div className="card" style={{ background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.1)", borderRadius: "16px", padding: "3rem 2rem", textAlign: "center", opacity: 0.6 }}>
                 <span style={{ fontSize: "3rem" }}>🧐</span>
-                <h3 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>Awaiting Analysis</h3>
-                <p style={{ fontSize: "0.9rem" }}>Provide your farm's soil NPK levels and weather parameters to run the predictive model.</p>
+                <h3 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>{t("awaiting_analysis")}</h3>
+                <p style={{ fontSize: "0.9rem" }}>{t("provide_farm_params")}</p>
               </div>
             )}
           </div>
@@ -656,7 +661,7 @@ function Recommendations() {
 
             {/* Upload form card */}
             <div className="card" style={{ background: "var(--bg-glass)", backdropFilter: "blur(12px)", border: "1px solid var(--border-color)", borderRadius: "16px", padding: "1.5rem" }}>
-              <h3 style={{ fontSize: "1.2rem", color: "var(--primary)", marginBottom: "1rem" }}>Upload Leaf Photo</h3>
+              <h3 style={{ fontSize: "1.2rem", color: "var(--primary)", marginBottom: "1rem" }}>{t("upload_leaf_photo")}</h3>
 
               <form onSubmit={handleScanSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
 
@@ -695,7 +700,7 @@ function Recommendations() {
                   ) : (
                     <div>
                       <span style={{ fontSize: "3rem" }}>📸</span>
-                      <h4 style={{ margin: "1rem 0 0.25rem 0", fontSize: "1rem" }}>Click to upload leaf photo</h4>
+                      <h4 style={{ margin: "1rem 0 0.25rem 0", fontSize: "1rem" }}>{t("click_to_upload")}</h4>
                       <p style={{ fontSize: "0.8rem", opacity: 0.6 }}>Supports JPG, JPEG, PNG, WEBP up to 5MB</p>
                     </div>
                   )}
@@ -709,7 +714,7 @@ function Recommendations() {
                   disabled={scanning || !selectedFile}
                   style={{ padding: "0.85rem", borderRadius: "10px", fontSize: "1rem", fontWeight: "bold", background: "var(--primary)", border: "none", cursor: "pointer", opacity: (!selectedFile || scanning) ? 0.6 : 1 }}
                 >
-                  {scanning ? "🧬 Deep-Scanning Leaf..." : "🔍 Run AI Leaf Diagnosis"}
+                  {scanning ? `🧬 ${t("deep_scanning")}` : `🔍 ${t("run_ai_diagnosis")}`}
                 </button>
               </form>
             </div>
@@ -720,17 +725,17 @@ function Recommendations() {
                 <div className="card" style={{ background: "var(--bg-glass)", backdropFilter: "blur(12px)", border: "1px solid var(--border-color)", borderRadius: "16px", padding: "1.5rem" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
                     <div>
-                      <p style={{ fontSize: "0.8rem", textTransform: "uppercase", tracking: "wider", opacity: 0.6 }}>DIAGNOSED CONDITION</p>
+                      <p style={{ fontSize: "0.8rem", textTransform: "uppercase", tracking: "wider", opacity: 0.6 }}>{t("DIAGNOSED CONDITION", "DIAGNOSED CONDITION")}</p>
                       <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", color: scanResult.diagnosis.disease.includes("Healthy") ? "var(--success-text)" : "var(--warning-text)", marginTop: "0.25rem" }}>
-                        {scanResult.diagnosis.disease}
+                        {t(scanResult.diagnosis.disease, scanResult.diagnosis.disease)}
                       </h3>
-                      <p style={{ fontSize: "0.85rem", opacity: 0.7, margin: "0.25rem 0 0 0" }}>Crop: <strong>{scanResult.diagnosis.crop}</strong></p>
+                      <p style={{ fontSize: "0.85rem", opacity: 0.7, margin: "0.25rem 0 0 0" }}>{t("Crop:", "Crop:")} <strong>{t(scanResult.diagnosis.crop, scanResult.diagnosis.crop)}</strong></p>
                     </div>
                     <div style={{ textAlign: "right" }}>
                       <div style={{ fontSize: "1.5rem", fontWeight: "bold", color: "var(--primary)" }}>
                         {Math.round(scanResult.confidence * 100)}%
                       </div>
-                      <span style={{ fontSize: "0.75rem", opacity: 0.6 }}>Confidence</span>
+                      <span style={{ fontSize: "0.75rem", opacity: 0.6 }}>{t("Confidence", "Confidence")}</span>
                     </div>
                   </div>
 
@@ -743,21 +748,21 @@ function Recommendations() {
 
                   {/* Dynamic method badge */}
                   <div style={{ display: "inline-block", background: "rgba(16, 185, 129, 0.1)", color: "var(--primary)", padding: "0.3rem 0.8rem", borderRadius: "50px", fontSize: "0.8rem", fontWeight: "bold", marginBottom: "1rem" }}>
-                    {scanResult.method}
+                    {t(scanResult.method, scanResult.method)}
                   </div>
 
                   <div style={{ borderTop: "1px solid var(--border-color)", paddingTop: "1rem" }}>
-                    <h4 style={{ fontSize: "0.9rem", color: "#f43f5e", marginBottom: "0.25rem" }}>🔎 Observed Symptoms:</h4>
+                    <h4 style={{ fontSize: "0.9rem", color: "#f43f5e", marginBottom: "0.25rem" }}>🔎 {t("Observed Symptoms:", "Observed Symptoms:")}</h4>
                     <p style={{ fontSize: "0.85rem", opacity: 0.9, lineHeight: "1.5", margin: "0" }}>
-                      {scanResult.diagnosis.symptoms}
+                      {t(scanResult.diagnosis.symptoms, scanResult.diagnosis.symptoms)}
                     </p>
                   </div>
                 </div>
               ) : (
                 <div className="card" style={{ background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.1)", borderRadius: "16px", padding: "3rem 2rem", textAlign: "center", opacity: 0.6 }}>
                   <span style={{ fontSize: "3rem" }}>📸</span>
-                  <h3 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>Awaiting Leaf Scan</h3>
-                  <p style={{ fontSize: "0.9rem" }}>Drag or upload an image of a diseased crop leaf, then run the diagnosis engine.</p>
+                  <h3 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>{t("awaiting_leaf_scan")}</h3>
+                  <p style={{ fontSize: "0.9rem" }}>{t("drag_upload_leaf")}</p>
                 </div>
               )}
             </div>
@@ -767,7 +772,7 @@ function Recommendations() {
           {scanResult && (
             <div className="card" style={{ background: "var(--bg-glass)", border: "1px solid var(--border-color)", borderRadius: "16px", padding: "1.5rem" }}>
               <h3 style={{ fontSize: "1.2rem", color: "var(--primary)", marginBottom: "1.5rem", borderBottom: "1px solid var(--border-color)", paddingBottom: "0.75rem" }}>
-                🛠️ Treatment & Control Advisory
+                🛠️ {t("Treatment & Control Advisory", "Treatment & Control Advisory")}
               </h3>
 
               {/* Treatment tab selectors */}
@@ -776,13 +781,13 @@ function Recommendations() {
                   onClick={() => setActiveTreatmentTab("organic")}
                   style={{ padding: "0.5rem 1rem", fontSize: "0.85rem", borderRadius: "8px", border: activeTreatmentTab === "organic" ? "none" : "1px solid var(--border-color)", background: activeTreatmentTab === "organic" ? "rgba(16, 185, 129, 0.2)" : "transparent", color: activeTreatmentTab === "organic" ? "var(--primary)" : "var(--text-muted)", cursor: "pointer", transition: "all 0.3s ease" }}
                 >
-                  🍃 Organic & Biological Remedies
+                  🍃 {t("Organic & Biological Remedies", "Organic & Biological Remedies")}
                 </button>
                 <button
                   onClick={() => setActiveTreatmentTab("chemical")}
                   style={{ padding: "0.5rem 1rem", fontSize: "0.85rem", borderRadius: "8px", border: activeTreatmentTab === "chemical" ? "none" : "1px solid var(--border-color)", background: activeTreatmentTab === "chemical" ? "rgba(239, 68, 68, 0.2)" : "transparent", color: activeTreatmentTab === "chemical" ? "#ef4444" : "var(--text-muted)", cursor: "pointer", transition: "all 0.3s ease" }}
                 >
-                  🧪 Chemical Control (Recommended)
+                  🧪 {t("Chemical Control (Recommended)", "Chemical Control (Recommended)")}
                 </button>
               </div>
 
@@ -790,22 +795,22 @@ function Recommendations() {
               {activeTreatmentTab === "organic" ? (
                 <div style={{ animation: "fadeIn 0.3s ease" }}>
                   <p style={{ fontSize: "0.9rem", lineHeight: "1.6", background: "rgba(0,0,0,0.03)", padding: "1rem", borderRadius: "10px", borderLeft: "4px solid #10b981", color: "var(--text-main)" }}>
-                    {scanResult.diagnosis.organic}
+                    {t(scanResult.diagnosis.organic, scanResult.diagnosis.organic)}
                   </p>
                 </div>
               ) : (
                 <div style={{ animation: "fadeIn 0.3s ease" }}>
                   <p style={{ fontSize: "0.9rem", lineHeight: "1.6", background: "rgba(0,0,0,0.03)", padding: "1rem", borderRadius: "10px", borderLeft: "4px solid #ef4444", color: "var(--text-main)" }}>
-                    {scanResult.diagnosis.chemical}
+                    {t(scanResult.diagnosis.chemical, scanResult.diagnosis.chemical)}
                   </p>
                 </div>
               )}
 
               {/* Prevention Rules */}
               <div style={{ borderTop: "1px solid var(--border-color)", marginTop: "1.5rem", paddingTop: "1rem" }}>
-                <h4 style={{ fontSize: "0.95rem", color: "var(--warning-text)", marginBottom: "0.5rem" }}>🛡️ Preventive Action & Best Practices:</h4>
+                <h4 style={{ fontSize: "0.95rem", color: "var(--warning-text)", marginBottom: "0.5rem" }}>🛡️ {t("Preventive Action & Best Practices:", "Preventive Action & Best Practices:")}</h4>
                 <p style={{ fontSize: "0.85rem", opacity: 0.85, lineHeight: "1.5", color: "var(--text-main)" }}>
-                  {scanResult.diagnosis.prevention}
+                  {t(scanResult.diagnosis.prevention, scanResult.diagnosis.prevention)}
                 </p>
               </div>
             </div>

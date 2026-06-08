@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import API, { getImageUrl } from "../services/api";
 
 function Profile() {
+  const { t } = useTranslation();
   const [user, setUser] = useState(null);
   const [equipmentList, setEquipmentList] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -214,11 +216,11 @@ function Profile() {
 
   return (
     <div className="container">
-      <h2 className="page-title">Profile ({user.role})</h2>
+      <h2 className="page-title">{t("profile")} ({user.role})</h2>
       <div className="card">
-        <p><strong>Name:</strong> {user.name}</p>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Role:</strong> {user.role}</p>
+        <p><strong>{t("name_label")}</strong> {user.name}</p>
+        <p><strong>{t("email_label")}</strong> {user.email}</p>
+        <p><strong>{t("role_label")}</strong> {user.role}</p>
       </div>
 
       {user.role === "owner" && (
@@ -566,9 +568,9 @@ function Profile() {
             
             {/* Left Side: Pending Requests */}
             <div>
-              <h3 style={{ color: "var(--primary-color)", marginBottom: "1.5rem" }}>🔔 Registration Requests</h3>
+              <h3 style={{ color: "var(--primary)", marginBottom: "1.5rem" }}>🔔 {t("reg_requests")}</h3>
               {pendingOwners.length === 0 ? (
-                <p style={{ opacity: 0.6 }}>No pending registration requests.</p>
+                <p style={{ opacity: 0.6 }}>{t("no_pending_reg")}</p>
               ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                   {pendingOwners.map(owner => (
@@ -601,7 +603,7 @@ function Profile() {
 
             {/* Right Side: Active Equipment Owners */}
             <div>
-              <h3 style={{ marginBottom: "1.5rem" }}>👥 Active Equipment Owners</h3>
+              <h3 style={{ marginBottom: "1.5rem" }}>👥 {t("active_owners")}</h3>
               {activeOwners.length === 0 ? (
                 <p style={{ opacity: 0.6 }}>No active owners found.</p>
               ) : (
@@ -613,7 +615,7 @@ function Profile() {
                         <p style={{ margin: "0", fontSize: "0.85rem", opacity: 0.7 }}>{owner.email}</p>
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <span className="status-badge owner" style={{ margin: 0, background: "rgba(34, 197, 94, 0.1)", color: "#22c55e" }}>Active</span>
+                        <span className="status-badge owner" style={{ margin: 0, background: "rgba(34, 197, 94, 0.1)", color: "#22c55e" }}>{t("active")}</span>
                         <button 
                           onClick={() => handleDeleteOwner(owner._id)}
                           style={{ 

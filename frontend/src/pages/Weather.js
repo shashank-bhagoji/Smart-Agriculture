@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // Weather icon mapping
 const weatherIcons = {
@@ -31,6 +32,7 @@ const WeatherSkeleton = () => (
 );
 
 function Weather() {
+  const { t } = useTranslation();
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
@@ -78,16 +80,16 @@ function Weather() {
       const weatherData = await weatherRes.json();
 
       const mapWeatherCode = (code) => {
-        if (code === 0) return { main: "Clear", description: "clear sky" };
-        if (code >= 1 && code <= 3) return { main: "Clouds", description: "partly cloudy" };
-        if (code === 45 || code === 48) return { main: "Fog", description: "foggy" };
-        if (code >= 51 && code <= 57) return { main: "Drizzle", description: "drizzle" };
-        if (code >= 61 && code <= 67) return { main: "Rain", description: "rain" };
-        if (code >= 71 && code <= 77) return { main: "Snow", description: "snow" };
-        if (code >= 80 && code <= 82) return { main: "Rain", description: "rain showers" };
-        if (code >= 85 && code <= 86) return { main: "Snow", description: "snow showers" };
-        if (code >= 95 && code <= 99) return { main: "Thunderstorm", description: "thunderstorm" };
-        return { main: "Clear", description: "clear" };
+        if (code === 0) return { main: t("weather_Clear", "Clear"), description: t("clear sky", "clear sky") };
+        if (code >= 1 && code <= 3) return { main: t("weather_Clouds", "Clouds"), description: t("partly cloudy", "partly cloudy") };
+        if (code === 45 || code === 48) return { main: t("weather_Fog", "Fog"), description: t("foggy", "foggy") };
+        if (code >= 51 && code <= 57) return { main: t("weather_Drizzle", "Drizzle"), description: t("drizzle", "drizzle") };
+        if (code >= 61 && code <= 67) return { main: t("weather_Rain", "Rain"), description: t("rain", "rain") };
+        if (code >= 71 && code <= 77) return { main: t("weather_Snow", "Snow"), description: t("snow", "snow") };
+        if (code >= 80 && code <= 82) return { main: t("weather_Rain", "Rain"), description: t("rain showers", "rain showers") };
+        if (code >= 85 && code <= 86) return { main: t("weather_Snow", "Snow"), description: t("snow showers", "snow showers") };
+        if (code >= 95 && code <= 99) return { main: t("weather_Thunderstorm", "Thunderstorm"), description: t("thunderstorm", "thunderstorm") };
+        return { main: t("weather_Clear", "Clear"), description: t("clear sky", "clear") };
       };
 
       const currentCond = mapWeatherCode(weatherData.current.weather_code);
@@ -135,8 +137,8 @@ function Weather() {
   return (
     <div className="container">
       <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-        <h2 className="page-title" style={{ marginBottom: "0.5rem" }}>🌤️ Weather Insights</h2>
-        <p className="page-subtitle">Real-time agricultural weather data for your local fields.</p>
+        <h2 className="page-title" style={{ marginBottom: "0.5rem" }}>🌤️ {t("weather_insights")}</h2>
+        <p className="page-subtitle">{t("weather_subtitle")}</p>
       </div>
 
       {/* Search Section */}
@@ -144,7 +146,7 @@ function Weather() {
         <form onSubmit={fetchWeather} style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
           <div className="input-group" style={{ flex: "1 1 300px", marginBottom: 0 }}>
             <input
-              placeholder="Enter your village, city or district..."
+              placeholder={t("enter_village_city")}
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
@@ -152,7 +154,7 @@ function Weather() {
             />
           </div>
           <button type="submit" className="btn-primary" disabled={loading} style={{ width: "auto", padding: "1.2rem 2rem", marginTop: 0 }}>
-            {loading ? "Searching..." : "🔍 Check Weather"}
+            {loading ? t("searching") : `🔍 ${t("check_weather")}`}
           </button>
         </form>
       </div>
@@ -173,9 +175,9 @@ function Weather() {
         <div className="card weather-main-card" style={{ animation: "fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
             <div>
-              <span className="badge">Current Conditions</span>
-              <h3 style={{ fontSize: "2.2rem", marginBottom: "0.25rem", fontWeight: "700" }}>{weather.name}</h3>
-              <p style={{ color: "var(--text-muted)", fontSize: "1.1rem" }}>{weather.sys?.country}</p>
+              <span className="badge">{t("current_conditions")}</span>
+              <h3 style={{ fontSize: "2.2rem", marginBottom: "0.25rem", fontWeight: "700" }}>{t(weather.name, weather.name)}</h3>
+              <p style={{ color: "var(--text-muted)", fontSize: "1.1rem" }}>{t(weather.sys?.country, weather.sys?.country)}</p>
             </div>
             <div style={{ textAlign: "right" }}>
               <div style={{ fontSize: "4rem", filter: "drop-shadow(0 0 10px rgba(16, 185, 129, 0.2))" }}>{icon(weather.weather?.[0]?.main)}</div>
@@ -189,15 +191,15 @@ function Weather() {
           <div className="weather-stats">
             <div className="weather-stat">
               <span>💧</span>
-              <span>{weather.main?.humidity}% Humidity</span>
+              <span>{weather.main?.humidity}% {t("Humidity", "Humidity")}</span>
             </div>
             <div className="weather-stat">
               <span>💨</span>
-              <span>{weather.wind?.speed} m/s Wind</span>
+              <span>{weather.wind?.speed} m/s {t("Wind", "Wind")}</span>
             </div>
             <div className="weather-stat">
               <span>🌡️</span>
-              <span>{Math.round(weather.main?.feels_like)}°C Feels like</span>
+              <span>{Math.round(weather.main?.feels_like)}°C {t("Feels like", "Feels like")}</span>
             </div>
           </div>
 
@@ -205,12 +207,12 @@ function Weather() {
             <div style={{ display: "flex", gap: "0.75rem" }}>
               <span style={{ fontSize: "1.2rem" }}>💡</span>
               <div>
-                <strong style={{ color: "var(--primary)", display: "block", marginBottom: "0.25rem" }}>Agricultural Advice:</strong>
+                <strong style={{ color: "var(--primary)", display: "block", marginBottom: "0.25rem" }}>{t("Agricultural Advice:", "Agricultural Advice:")}</strong>
                 {weather.weather?.[0]?.main === "Rain" || weather.weather?.[0]?.main === "Drizzle" || weather.weather?.[0]?.main === "Thunderstorm"
-                  ? "Precipitation expected. Delay any pesticide spraying or irrigation. Ensure proper drainage in low-lying areas."
+                  ? t("Precipitation expected. Delay any pesticide spraying or irrigation. Ensure proper drainage in low-lying areas.", "Precipitation expected. Delay any pesticide spraying or irrigation. Ensure proper drainage in low-lying areas.")
                   : weather.weather?.[0]?.main === "Clear"
-                  ? "Clear skies ahead. Excellent window for harvesting, drying crops, or applying fertilizers."
-                  : "Moderate conditions. Good for general field maintenance. Keep an eye on moisture levels."}
+                  ? t("Clear skies ahead. Excellent window for harvesting, drying crops, or applying fertilizers.", "Clear skies ahead. Excellent window for harvesting, drying crops, or applying fertilizers.")
+                  : t("Moderate conditions. Good for general field maintenance. Keep an eye on moisture levels.", "Moderate conditions. Good for general field maintenance. Keep an eye on moisture levels.")}
               </div>
             </div>
           </div>
@@ -221,7 +223,7 @@ function Weather() {
       {!loading && forecast.length > 0 && (
         <div style={{ marginTop: "4rem", animation: "fadeIn 0.8s ease" }}>
           <h3 style={{ fontSize: "1.5rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            📅 <span>5-Day Extended Forecast</span>
+            📅 <span>{t("five_day_forecast")}</span>
           </h3>
           <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}>
             {forecast.map((item, i) => {
@@ -231,7 +233,7 @@ function Weather() {
               return (
                 <div key={i} className="card" style={{ textAlign: "center", padding: "1.5rem", background: i === 0 ? "rgba(16, 185, 129, 0.05)" : "var(--bg-surface)" }}>
                   <p style={{ fontSize: "0.9rem", fontWeight: "700", color: i === 0 ? "var(--primary)" : "var(--text-muted)", marginBottom: "1rem" }}>
-                    {i === 0 ? "TODAY" : dateStr.toUpperCase()}
+                    {i === 0 ? t("TODAY", "TODAY") : dateStr.toUpperCase()}
                   </p>
                   <div style={{ fontSize: "2.5rem", margin: "1rem 0" }}>{icon(item.weather?.[0]?.main)}</div>
                   <p style={{ fontSize: "1.5rem", fontWeight: "800", color: "var(--text-main)" }}>{Math.round(item.main?.temp)}°C</p>

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import API from "../services/api";
 
 function Login() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -20,31 +22,32 @@ function Login() {
       } else {
         navigate("/equipment");
       }
-      alert("Login Success");
+      alert(t("login_success"));
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.message || "Login failed");
+      const msg = err.response?.data?.message || "Login failed";
+      alert(t(msg, msg));
     }
   };
 
   return (
     <div className="auth-wrapper">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h2>Login to your Account</h2>
+        <h2>{t("login_to_account")}</h2>
         <div className="input-group">
           <input
-            placeholder="Email Address"
+            placeholder={t("email_address")}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
         </div>
         <div className="input-group">
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t("password_placeholder")}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">{t("login_btn")}</button>
       </form>
     </div>
   );

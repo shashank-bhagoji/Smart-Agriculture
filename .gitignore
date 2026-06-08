@@ -80,3 +80,5 @@ pnpm-debug.log*
 # Agent / Scratchpad Files
 # ------------------------------------------------------------------------------
 scratch/
+*.md
+!README.md

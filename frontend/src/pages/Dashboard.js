@@ -46,7 +46,7 @@ function Dashboard() {
         />
         <div className="hero-content">
           {/* Glassmorphic Pill capsule badge */}
-          <div className="hero-badge">Built for Karnataka Farmers</div>
+          <div className="hero-badge">{t("Built for Karnataka Farmers", "Built for Karnataka Farmers")}</div>
           
           <h1 className="hero-title">
             {i18n.language === 'en' ? (
@@ -73,7 +73,7 @@ function Dashboard() {
               className="btn-secondary hero-btn" 
               style={{ width: "auto", display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "transparent" }}
             >
-              AI ADVISOR
+              {t("AI ADVISOR", "AI ADVISOR")}
             </button>
           </div>
         </div>

@@ -573,6 +573,11 @@ input:focus, select:focus, textarea:focus {
   box-shadow: var(--shadow-focus);
 }
 
+select option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
 button {
   width: 100%;
   padding: 1rem;

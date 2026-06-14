@@ -569,7 +569,7 @@ function Recommendations() {
                 {/* Additional regional insights */}
                 <div style={{ borderTop: "1px solid var(--border-color)", paddingTop: "1.5rem", textAlign: "left" }}>
                   <h4 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--primary)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span>💡</span> Agronomic Insights & Actions:
+                    <span>💡</span> {t('Agronomic Insights & Actions:', 'Agronomic Insights & Actions:')}
                   </h4>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
 
@@ -634,7 +634,7 @@ function Recommendations() {
                           {cropInsights?.marketplace?.title ? t(cropInsights.marketplace.title, cropInsights.marketplace.title) : "Marketplace & Resources"}
                         </h5>
                         <p style={{ margin: 0, fontSize: "0.85rem", lineHeight: "1.4", opacity: 0.9 }}>
-                          Check our <Link to="/service-marketplace" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>Service Marketplace</Link> or <Link to="/equipment" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>Equipment List</Link> to hire planters/harvesters suitable for <span style={{ textTransform: "capitalize", fontWeight: "bold", color: "var(--warning-text)" }}>{t(`crop_${(cropResult.crop || "").toLowerCase()}`, cropResult.crop)}</span>.
+                          {t('marketplace_prompt_1', 'Check our ')}<Link to="/service-marketplace" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>{t('Service Marketplace', 'Service Marketplace')}</Link>{t('marketplace_prompt_2', ' or ')}<Link to="/equipment" style={{ color: "var(--primary)", textDecoration: "underline", fontWeight: "600" }}>{t('equipment_list_title', 'Equipment List')}</Link>{t('marketplace_prompt_3', ' to hire planters/harvesters suitable for ')}<span style={{ textTransform: "capitalize", fontWeight: "bold", color: "var(--warning-text)" }}>{t(`crop_${(cropResult.crop || "").toLowerCase()}`, cropResult.crop)}</span>.
                         </p>
                       </div>
                     </div>

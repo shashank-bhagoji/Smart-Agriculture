@@ -115,7 +115,7 @@ function Navbar() {
         {/* Language Switcher Dropdown */}
         <div className="notif-wrapper" ref={langDropdownRef}>
           <button className="lang-btn" onClick={() => setShowLangDropdown(!showLangDropdown)}>
-            🌐 {languages.find(l => l.code === i18n.language)?.name || 'Language'}
+            {languages.find(l => l.code === i18n.language)?.name || 'Language'}
           </button>
           {showLangDropdown && (
             <div className="notif-dropdown lang-dropdown">
@@ -134,7 +134,6 @@ function Navbar() {
             </div>
           )}
         </div>
-
         {isLoggedIn ? (
           <>
             <Link to="/profile" className="nav-link">{t('profile')}</Link>

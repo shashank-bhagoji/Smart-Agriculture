@@ -53,17 +53,17 @@ function Register() {
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(form.password);
 
     if (form.password.length < 8 || form.password.length > 12) {
-      setError(t("Password must be between 8 and 12 characters long."));
+      setError(t("Password must be between 8 and 12 characters long.", "Password must be between 8 and 12 characters long."));
       setLoading(false);
       return;
     }
     if (!hasUpperCase) {
-      setError(t("Password must contain at least one uppercase letter."));
+      setError(t("Password must contain at least one uppercase letter.", "Password must contain at least one uppercase letter."));
       setLoading(false);
       return;
     }
     if (!hasSpecialChar) {
-      setError(t("Password must contain at least one special character."));
+      setError(t("Password must contain at least one special character.", "Password must contain at least one special character."));
       setLoading(false);
       return;
     }
@@ -160,10 +160,11 @@ function Register() {
           <div className="input-group">
             <label style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "0.5rem", display: "block" }}>{t("select_specialty")}</label>
             <select onChange={(e) => setForm({ ...form, serviceType: e.target.value })} value={form.serviceType}>
-              <option value="Land Preparation">{t("Land Preparation")}</option>
-              <option value="Harvesting">{t("Harvesting")}</option>
-              <option value="Crop Spraying">{t("Crop Spraying")}</option>
-              <option value="Soil Testing">{t("Soil Testing")}</option>
+              <option value="Land Preparation">{t("Land Preparation", "Land Preparation")}</option>
+              <option value="Harvesting">{t("Harvesting", "Harvesting")}</option>
+              <option value="Crop Spraying">{t("Crop Spraying", "Crop Spraying")}</option>
+              <option value="Soil Testing">{t("Soil Testing", "Soil Testing")}</option>
+              <option value="Expert Operator">{t("Expert Operator", "Expert Operator")}</option>
             </select>
           </div>
         )}

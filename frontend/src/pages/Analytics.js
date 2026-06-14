@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import API from "../services/api";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip, AreaChart, Area, XAxis, CartesianGrid } from 'recharts';
 
 const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'];
 
 function Analytics() {
+  const { t } = useTranslation();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
@@ -14,32 +16,33 @@ function Analytics() {
       .then(res => setStats(res.data))
       .catch(console.error)
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) return <div className="container">Loading Analytics...</div>;
+  if (loading) return <div className="container">{t("Loading Analytics...", "Loading Analytics...")}</div>;
 
   const distributionData = [
-    { name: 'Equipment', value: stats?.equipment || 0 },
-    { name: 'Services', value: stats?.services || 0 },
+    { name: t('Equipment', 'Equipment'), value: stats?.equipment || 0 },
+    { name: t('Services', 'Services'), value: stats?.services || 0 },
   ];
 
   // Dummy trend data for visualization
   const trendData = [
-    { name: 'Jan', rev: 4000 },
-    { name: 'Feb', rev: 3000 },
-    { name: 'Mar', rev: 5000 },
-    { name: 'Apr', rev: 4500 },
-    { name: 'May', rev: stats?.totalRevenue || 6000 },
+    { name: t('Jan', 'Jan'), rev: 4000 },
+    { name: t('Feb', 'Feb'), rev: 3000 },
+    { name: t('Mar', 'Mar'), rev: 5000 },
+    { name: t('Apr', 'Apr'), rev: 4500 },
+    { name: t('May', 'May'), rev: stats?.totalRevenue || 6000 },
   ];
 
   return (
     <div className="container">
-      <h2 className="page-title">Platform Analytics</h2>
+      <h2 className="page-title">{t("Platform Analytics", "Platform Analytics")}</h2>
       
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginTop: "2rem" }}>
         {/* Revenue Area Chart */}
         <div className="card">
-          <h3>Revenue Growth (₹)</h3>
+          <h3>{t("Revenue Growth (₹)", "Revenue Growth (₹)")}</h3>
           <div style={{ width: '100%', height: 300, marginTop: "1rem" }}>
             <ResponsiveContainer>
               <AreaChart data={trendData}>
@@ -60,7 +63,7 @@ function Analytics() {
 
         {/* Distribution Pie Chart */}
         <div className="card">
-          <h3>Listings Distribution</h3>
+          <h3>{t("Listings Distribution", "Listings Distribution")}</h3>
           <div style={{ width: '100%', height: 300, marginTop: "1rem" }}>
             <ResponsiveContainer>
               <PieChart>

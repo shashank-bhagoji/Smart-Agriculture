@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import API, { getImageUrl } from "../services/api";
 
 function EquipmentList() {
@@ -8,6 +9,7 @@ function EquipmentList() {
   const [favorites, setFavorites] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   
   // Booking Modal State
   const [showBookingModal, setShowBookingModal] = useState(false);
@@ -28,6 +30,12 @@ function EquipmentList() {
     if (search) query += `name=${search}&`;
     API.get(query).then((res) => setEquipment(res.data)).catch(console.error);
   };
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate, token]);
 
   // Load user details & favorites
   const fetchUserData = () => {
@@ -163,7 +171,7 @@ function EquipmentList() {
               </div>
 
               <div style={{ padding: "0.8rem 1rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                <h3 style={{ margin: 0, fontSize: "1.25rem", color: "var(--text-main)" }}>{item.name}</h3>
+                <h3 style={{ margin: 0, fontSize: "1.25rem", color: "var(--text-main)" }}>{t(item.name, item.name)}</h3>
                 <div style={{ fontSize: "0.9rem", color: "#fbbf24", display: "flex", alignItems: "center", gap: "0.4rem" }}>
                   <span>{"★".repeat(Math.round(item.rating || 0)) + "☆".repeat(5 - Math.round(item.rating || 0))}</span>
                   <span style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>({item.reviewsCount || 0} {t('reviews')})</span>
@@ -183,7 +191,7 @@ function EquipmentList() {
                 </div>
                 
                 {item.owner?.name && (
-                  <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: 0 }}>{t('owner')}: <span style={{ color: "var(--text-main)", fontWeight: "500" }}>{item.owner.name}</span></p>
+                  <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: 0 }}>{t('owner')}: <span style={{ color: "var(--text-main)", fontWeight: "500" }}>{t(item.owner.name.trim(), item.owner.name.trim())}</span></p>
                 )}
                 
                 <button className="btn-primary" style={{ width: "100%", padding: "0.6rem", marginTop: "0.25rem", borderRadius: "10px", fontSize: "0.95rem" }} onClick={() => handleBookClick(item)}>
@@ -203,7 +211,7 @@ function EquipmentList() {
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
           <div className="card" style={{ maxWidth: "420px", width: "90%", padding: "1.5rem", borderRadius: "20px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", position: "relative" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.2rem" }}>
-              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{isGroupBooking ? "Start Group Booking:" : t('book_item')} {selectedItem?.name}</h3>
+              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{isGroupBooking ? "Start Group Booking:" : t('book_item')} {selectedItem?.name ? t(selectedItem.name, selectedItem.name) : ''}</h3>
               <button 
                 type="button"
                 onClick={() => setShowBookingModal(false)} 

@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   role: {
     type: String,
-    enum: ["farmer", "owner", "service_provider", "admin"],
+    enum: ["farmer", "owner", "service_provider", "expert_operator", "admin"],
     default: "farmer",
   },
   // optional profile fields

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import API, { getImageUrl } from "../services/api";
 
 function Profile() {
@@ -20,9 +21,13 @@ function Profile() {
   const [notifications, setNotifications] = useState([]); // removed unused variable
   const token = localStorage.getItem("token");
   const isLoggedIn = !!token;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) return;
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
     
     const fetchNotifs = () => {
       API.get("/notifications", { headers: { Authorization: `Bearer ${token}` } })
@@ -33,7 +38,7 @@ function Profile() {
     fetchNotifs();
     const interval = setInterval(fetchNotifs, 10000); // Poll every 10s
     return () => clearInterval(interval);
-  }, [isLoggedIn, token]);
+  }, [isLoggedIn, token, navigate]);
 
   useEffect(() => {
     if (token) {
@@ -216,11 +221,11 @@ function Profile() {
 
   return (
     <div className="container">
-      <h2 className="page-title">{t("profile")} ({user.role})</h2>
+      <h2 className="page-title">{t("profile")} ({t(user.role, user.role)})</h2>
       <div className="card">
-        <p><strong>{t("name_label")}</strong> {user.name}</p>
+        <p><strong>{t("name_label")}</strong> {user.name ? t(user.name.trim(), user.name) : ""}</p>
         <p><strong>{t("email_label")}</strong> {user.email}</p>
-        <p><strong>{t("role_label")}</strong> {user.role}</p>
+        <p><strong>{t("role_label")}</strong> {t(user.role, user.role)}</p>
       </div>
 
       {user.role === "owner" && (
@@ -271,7 +276,7 @@ function Profile() {
                     />
                   )}
                   <div style={{ padding: "0.8rem 1rem", display: "flex", flexDirection: "column" }}>
-                    <h3 style={{ margin: "0 0 0.5rem 0", fontSize: "1.2rem" }}>{booking.equipment?.name}</h3>
+                    <h3 style={{ margin: "0 0 0.5rem 0", fontSize: "1.2rem" }}>{booking.equipment?.name ? t(booking.equipment.name, booking.equipment.name) : ''}</h3>
                     <p style={{ fontSize: "0.85rem", opacity: 0.8, marginBottom: "0.5rem", marginTop: 0 }}><strong>Requested by:</strong> {booking.farmer?.name}</p>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0.25rem 0" }}>
                       <p style={{ margin: 0 }}><strong>Status:</strong> <span className={`status-badge ${booking.status}`}>{booking.status}</span></p>
@@ -303,7 +308,7 @@ function Profile() {
                     <div style={{ width: "80px", height: "80px", backgroundColor: "#eee", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>🚜</div>
                   )}
                   <div style={{ flex: 1 }}>
-                    <h4 style={{ margin: "0 0 0.25rem 0" }}>{booking.equipment?.name}</h4>
+                    <h4 style={{ margin: "0 0 0.25rem 0" }}>{booking.equipment?.name ? t(booking.equipment.name, booking.equipment.name) : ''}</h4>
                     <p style={{ margin: "0 0 0.25rem 0", fontSize: "0.85rem", opacity: 0.8 }}>Requested by: {booking.farmer?.name}</p>
                   </div>
                   <div>
@@ -329,9 +334,9 @@ function Profile() {
                     />
                   )}
                   <div style={{ padding: "1rem" }}>
-                    <h4>{item.name}</h4>
+                    <h4>{t(item.name, item.name)}</h4>
 
-                    <p className="price">₹{item.pricePerDay} / day</p>
+                    <p className="price">₹{item.pricePerDay} / {t('day', 'day')}</p>
                   </div>
                 </div>
               ))
@@ -347,28 +352,28 @@ function Profile() {
               className={`tab-btn ${historyTab === "equipment" ? "active" : ""}`}
               onClick={() => setHistoryTab("equipment")} 
             >
-              Equipment Orders
+              {t('equipment_orders', 'Equipment Orders')}
             </button>
             <button 
               className={`tab-btn ${historyTab === "services" ? "active" : ""}`}
               onClick={() => setHistoryTab("services")} 
             >
-              Service History
+              {t('service_history', 'Service History')}
             </button>
             <button 
               className={`tab-btn ${historyTab === "favorites" ? "active" : ""}`}
               onClick={() => setHistoryTab("favorites")} 
             >
-              ❤️ Favorites
+              ❤️ {t('favorites', 'Favorites')}
             </button>
           </div>
 
           {historyTab === "favorites" ? (
             <div className="favorites-section">
-              <h4 style={{ marginBottom: "1rem" }}>Your Saved Equipment</h4>
+              <h4 style={{ marginBottom: "1rem" }}>{t('saved_equipment', 'Your Saved Equipment')}</h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
                 {favorites.equipment.length === 0 ? (
-                  <p>No favorites saved yet.</p>
+                  <p>{t('no_favorites_saved', 'No favorites saved yet.')}</p>
                 ) : (
                   favorites.equipment.map(item => (
                     <div key={item._id} className="card" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1rem", padding: "1rem", width: "100%", maxWidth: "400px" }}>
@@ -384,12 +389,12 @@ function Profile() {
                         </div>
                       )}
                       <div style={{ flex: 1 }}>
-                        <h4 style={{ margin: "0 0 0.25rem 0", fontSize: "1.1rem" }}>{item.name}</h4>
+                        <h4 style={{ margin: "0 0 0.25rem 0", fontSize: "1.1rem" }}>{t(item.name, item.name)}</h4>
                         <p style={{ margin: "0 0 0.25rem 0", fontSize: "0.95rem", color: "var(--primary-color)", fontWeight: "bold" }}>
-                          ₹{item.pricePerDay} / day
+                          ₹{item.pricePerDay} / {t('day', 'day')}
                         </p>
                         <p style={{ margin: "0", fontSize: "0.85rem", opacity: 0.8 }}>
-                          Owner: {item.owner?.name || "Verified Owner"}
+                          {t('owner', 'Owner')}: {item.owner?.name ? t(item.owner.name.trim(), item.owner.name.trim()) : t('Verified_Owner', 'Verified Owner')}
                         </p>
                       </div>
                     </div>
@@ -401,7 +406,7 @@ function Profile() {
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
               {bookings.filter(b => historyTab === "equipment" ? b.equipment : b.service).length === 0 ? (
                 <div className="empty-state">
-                  <p>You haven't made any {historyTab} bookings yet.</p>
+                  <p>{t('no_bookings_tab', "You haven't made any bookings yet.")}</p>
                 </div>
               ) : (
                 bookings
@@ -428,12 +433,12 @@ function Profile() {
                         )}
                         
                         <div style={{ flex: 1 }}>
-                          <h4 style={{ margin: "0 0 0.25rem 0", fontSize: "1.1rem" }}>{item.name}</h4>
+                          <h4 style={{ margin: "0 0 0.25rem 0", fontSize: "1.1rem" }}>{t(item.name, item.name)}</h4>
                           <p style={{ margin: "0 0 0.25rem 0", fontSize: "0.95rem", color: "var(--primary-color)", fontWeight: "bold" }}>
-                            ₹{isService ? item.price : item.pricePerDay} / day
+                            ₹{isService ? item.price : item.pricePerDay} / {t('day', 'day')}
                           </p>
                           <p style={{ margin: "0", fontSize: "0.85rem", opacity: 0.8 }}>
-                            {isService ? "Provider" : "Owner"}: {isService ? item.provider?.name : item.owner?.name}
+                            {isService ? t('provider', 'Provider') : t('owner', 'Owner')}: {isService ? (item.provider?.name ? t(item.provider.name.trim(), item.provider.name.trim()) : "") : (item.owner?.name ? t(item.owner.name.trim(), item.owner.name.trim()) : "")}
                           </p>
                         </div>
                         
@@ -448,7 +453,7 @@ function Profile() {
                               }
                             }}
                           >
-                            {booking.status}
+                            {t(booking.status, booking.status)}
                             {booking.status === 'accepted' && <span style={{ fontSize: "0.8rem" }}>⭐</span>}
                           </span>
                         </div>
@@ -527,7 +532,7 @@ function Profile() {
               bookings.filter(b => b.status === 'pending').map((booking) => (
                 <div key={booking._id} className="card equipment-card" style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column", gap: 0 }}>
                   <div style={{ padding: "0.8rem 1rem", display: "flex", flexDirection: "column" }}>
-                    <h3 style={{ margin: "0 0 0.5rem 0", fontSize: "1.2rem" }}>{booking.service?.name}</h3>
+                    <h3 style={{ margin: "0 0 0.5rem 0", fontSize: "1.2rem" }}>{booking.service?.name ? t(booking.service.name, booking.service.name) : ''}</h3>
                     <p style={{ fontSize: "0.85rem", opacity: 0.8, marginBottom: "0.5rem", marginTop: 0 }}><strong>Requested by:</strong> {booking.farmer?.name}</p>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0.25rem 0" }}>
                       <p style={{ margin: 0 }}><strong>Status:</strong> <span className={`status-badge ${booking.status}`}>{booking.status}</span></p>
@@ -550,7 +555,7 @@ function Profile() {
               bookings.filter(b => b.status !== 'pending').map((booking) => (
                 <div key={booking._id} className="card" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1rem", padding: "1rem", width: "100%", maxWidth: "400px" }}>
                   <div style={{ flex: 1 }}>
-                    <h4 style={{ margin: "0 0 0.25rem 0" }}>{booking.service?.name}</h4>
+                    <h4 style={{ margin: "0 0 0.25rem 0" }}>{booking.service?.name ? t(booking.service.name, booking.service.name) : ''}</h4>
                     <p style={{ margin: "0 0 0.25rem 0", fontSize: "0.85rem", opacity: 0.8 }}>Requested by: {booking.farmer?.name}</p>
                   </div>
                   <div>

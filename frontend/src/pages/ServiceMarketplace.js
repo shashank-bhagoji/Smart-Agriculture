@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 
-const CATEGORIES = ["All", "Land Preparation", "Harvesting", "Crop Spraying", "Soil Testing"];
+const CATEGORIES = ["All", "Land Preparation", "Harvesting", "Crop Spraying", "Soil Testing", "Expert Operator"];
 
 function ServiceMarketplace() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [services, setServices] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
@@ -27,6 +29,23 @@ function ServiceMarketplace() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const userRole = payload.role;
+      if (userRole !== "farmer" && userRole !== "admin") {
+        alert("Access Restricted: Only Farmers and Admins have access to the Service Marketplace.");
+        navigate("/login");
+        return;
+      }
+    } catch (e) {
+      navigate("/login");
+      return;
+    }
+
     API.get("/services")
       .then((res) => {
         setServices(res.data);
@@ -43,7 +62,7 @@ function ServiceMarketplace() {
         })
         .catch(console.error);
     }
-  }, [token]);
+  }, [token, navigate]);
 
   const filterByCategory = (cat) => {
     setActiveCategory(cat);
@@ -161,11 +180,12 @@ function ServiceMarketplace() {
             }}>
               {svc.category === "Harvesting" ? "🌾" :
                svc.category === "Crop Spraying" ? "💧" :
-               svc.category === "Soil Testing" ? "🔬" : "🚜"}
+               svc.category === "Soil Testing" ? "🔬" : 
+               svc.category === "Expert Operator" ? "🧑‍🔧" : "🚜"}
             </div>
             
             <div style={{ padding: "0.8rem 1rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-              <h3 style={{ margin: 0, fontSize: "1.25rem", color: "var(--text-main)" }}>{svc.name}</h3>
+              <h3 style={{ margin: 0, fontSize: "1.25rem", color: "var(--text-main)" }}>{t(svc.name, svc.name)}</h3>
               <div style={{ fontSize: "0.9rem", color: "#fbbf24", display: "flex", alignItems: "center", gap: "0.4rem" }}>
                 <span>{"★".repeat(Math.round(svc.rating || 0)) + "☆".repeat(5 - Math.round(svc.rating || 0))}</span>
                 <span style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>({svc.reviewsCount || 0})</span>
@@ -178,7 +198,7 @@ function ServiceMarketplace() {
                 <span className="badge" style={{ margin: 0, fontSize: "0.75rem", padding: "0.2rem 0.6rem", borderRadius: "6px" }}>{t(svc.category || "General", svc.category || "General")}</span>
               </div>
               
-              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: 0 }}>{t('provider')}: <span style={{ color: "var(--text-main)", fontWeight: "500" }}>{svc.provider?.name || "Expert"}</span></p>
+              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: 0 }}>{t('provider')}: <span style={{ color: "var(--text-main)", fontWeight: "500" }}>{svc.provider?.name ? t(svc.provider.name.trim(), svc.provider.name.trim()) : t('Expert', 'Expert')}</span></p>
               
               <button className="btn-primary" style={{ width: "100%", padding: "0.6rem", marginTop: "0.25rem", borderRadius: "10px", fontSize: "0.95rem" }} onClick={() => handleRequestClick(svc)}>
                 {t('request_item_service')}
@@ -199,7 +219,7 @@ function ServiceMarketplace() {
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
           <div className="card" style={{ maxWidth: "420px", width: "90%", padding: "1.5rem", borderRadius: "20px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", position: "relative" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.2rem" }}>
-              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{t('request_item_service')} {selectedItem?.name}</h3>
+              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{t('request_item_service')} {selectedItem?.name ? t(selectedItem.name, selectedItem.name) : ''}</h3>
               <button 
                 type="button"
                 onClick={() => setShowBookingModal(false)} 

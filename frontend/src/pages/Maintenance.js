@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import API from "../services/api";
 
 const STATUS_COLORS = { pending: "#f59e0b", in_progress: "#3b82f6", completed: "#22c55e" };
 
 function Maintenance() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ equipment: "", description: "" });
   const [requests, setRequests] = useState([]);
   const [equipmentList, setEquipmentList] = useState([]);
@@ -16,6 +18,7 @@ function Maintenance() {
   useEffect(() => {
     API.get("/equipment/owner", { headers }).then((res) => setEquipmentList(res.data)).catch(console.error);
     API.get("/maintenance", { headers }).then((res) => setRequests(res.data)).catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e) => {
@@ -37,12 +40,12 @@ function Maintenance() {
 
   return (
     <div className="container">
-      <h2 className="page-title">Maintenance & Repair Requests</h2>
-      <p className="page-subtitle">Submit and track maintenance or repair requests for your equipment.</p>
+      <h2 className="page-title">{t("Maintenance & Repair Requests", "Maintenance & Repair Requests")}</h2>
+      <p className="page-subtitle">{t("Submit and track maintenance or repair requests for your equipment.", "Submit and track maintenance or repair requests for your equipment.")}</p>
 
       {/* New Request Form */}
       <div className="card form-card">
-        <h3>New Maintenance Request</h3>
+        <h3>{t("New Maintenance Request", "New Maintenance Request")}</h3>
         <form onSubmit={handleSubmit} className="auth-form" style={{ gap: "1rem" }}>
           <div className="input-group">
             <select
@@ -50,7 +53,7 @@ function Maintenance() {
               onChange={(e) => setForm({ ...form, equipment: e.target.value })}
               required
             >
-              <option value="">Select Your Equipment</option>
+              <option value="">{t("Select Your Equipment", "Select Your Equipment")}</option>
               {equipmentList.map((eq) => (
                 <option key={eq._id} value={eq._id}>{eq.name}</option>
               ))}
@@ -58,7 +61,7 @@ function Maintenance() {
           </div>
           <div className="input-group">
             <textarea
-              placeholder="Describe the issue or maintenance needed..."
+              placeholder={t("Describe the issue or maintenance needed...", "Describe the issue or maintenance needed...")}
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={4}
@@ -68,24 +71,24 @@ function Maintenance() {
           </div>
           {msg && <p className={msg.includes("submitted") ? "success-msg" : "error-msg"}>{msg}</p>}
           <button type="submit" className="btn-primary" disabled={submitting}>
-            {submitting ? "Submitting..." : "Submit Request"}
+            {submitting ? t("Submitting...", "Submitting...") : t("Submit Request", "Submit Request")}
           </button>
         </form>
       </div>
 
       {/* Existing Requests */}
-      <h3 style={{ marginTop: "2rem" }}>My Requests</h3>
+      <h3 style={{ marginTop: "2rem" }}>{t("My Requests", "My Requests")}</h3>
       <div className="grid">
         {requests.map((r) => (
           <div key={r._id} className="card">
-            <h4>{r.equipment?.name || "Equipment"}</h4>
+            <h4>{r.equipment?.name ? t(r.equipment.name, r.equipment.name) : t("Equipment", "Equipment")}</h4>
             <p>{r.description}</p>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.5rem" }}>
               <span
                 className="status-badge"
                 style={{ background: STATUS_COLORS[r.status] || "#64748b" }}
               >
-                {r.status}
+                {t(r.status, r.status)}
               </span>
               <span style={{ fontSize: "0.75rem", opacity: 0.6 }}>
                 {new Date(r.requestedAt).toLocaleDateString()}
@@ -93,7 +96,7 @@ function Maintenance() {
             </div>
           </div>
         ))}
-        {requests.length === 0 && <p className="empty-state">No maintenance requests yet.</p>}
+        {requests.length === 0 && <p className="empty-state">{t("No maintenance requests yet.", "No maintenance requests yet.")}</p>}
       </div>
     </div>
   );

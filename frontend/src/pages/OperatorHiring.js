@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 
 function OperatorHiring() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -16,6 +18,23 @@ function OperatorHiring() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const userRole = payload.role;
+      if (userRole !== "farmer" && userRole !== "admin") {
+        alert("Access Restricted: Only Farmers and Admins have access to Operator Hiring.");
+        navigate("/login");
+        return;
+      }
+    } catch (e) {
+      navigate("/login");
+      return;
+    }
+
     API.get("/operators")
       .then((res) => setOperators(res.data))
       .catch(console.error)
@@ -26,7 +45,7 @@ function OperatorHiring() {
         .then((res) => setUser(res.data))
         .catch(console.error);
     }
-  }, [token]);
+  }, [token, navigate]);
 
   const handleHireClick = (op) => {
     if (!token || !user) { alert("Please log in to hire an operator."); return; }
@@ -62,10 +81,10 @@ function OperatorHiring() {
 
   return (
     <div className="container">
-      <h2 className="page-title">Hire an Operator</h2>
-      <p className="page-subtitle">Find trained machine operators to run rented equipment on your farm.</p>
+      <h2 className="page-title">{t("Hire an Operator", "Hire an Operator")}</h2>
+      <p className="page-subtitle">{t("Find trained machine operators to run rented equipment on your farm.", "Find trained machine operators to run rented equipment on your farm.")}</p>
 
-      {loading && <p className="loading-text">Loading operators...</p>}
+      {loading && <p className="loading-text">{t("Loading operators...", "Loading operators...")}</p>}
 
       <div className="grid">
         {operators.map((op) => (
@@ -73,25 +92,25 @@ function OperatorHiring() {
             <div className="operator-avatar" style={{ width: "80px", height: "80px", borderRadius: "50%", background: "var(--primary-color)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2rem", marginBottom: "1rem" }}>
               {op.name ? op.name.charAt(0).toUpperCase() : "O"}
             </div>
-            <h3 style={{ margin: "0 0 0.5rem 0" }}>{op.name}</h3>
+            <h3 style={{ margin: "0 0 0.5rem 0" }}>{t(op.name, op.name)}</h3>
             <p className="badge" style={{ marginBottom: "0.5rem" }}>{op.servicesOffered?.map(s => t(s, s)).join(", ") || t("General Operator", "General Operator")}</p>
             <div className="operator-meta" style={{ display: "flex", gap: "1rem", marginBottom: "1rem", fontSize: "0.9rem" }}>
               <span>⭐ {op.rating?.toFixed(1) || "New"}</span>
-              <span className="price" style={{ color: "var(--primary-color)", fontWeight: "bold" }}>₹{op.ratePerDay}/day</span>
+              <span className="price" style={{ color: "var(--primary-color)", fontWeight: "bold" }}>₹{op.ratePerDay}/{t("day", "day")}</span>
             </div>
             <button
               className="btn-primary"
               style={{ width: "100%" }}
               onClick={() => handleHireClick(op)}
             >
-              Hire Now
+              {t("Hire Now", "Hire Now")}
             </button>
           </div>
         ))}
 
         {!loading && operators.length === 0 && (
           <div className="empty-state">
-            <p>No operators available at the moment. Check back soon!</p>
+            <p>{t("No operators available at the moment. Check back soon!", "No operators available at the moment. Check back soon!")}</p>
           </div>
         )}
       </div>

@@ -13,6 +13,7 @@ function EquipmentList() {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [bookingDetails, setBookingDetails] = useState({ startDate: "", days: 1 });
+  const [isGroupBooking, setIsGroupBooking] = useState(false);
 
   // Review Modal State
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -79,6 +80,7 @@ function EquipmentList() {
   const handleBookClick = (item) => {
     if (!token || !user) { alert("Please log in to book equipment."); return; }
     setSelectedItem(item);
+    setIsGroupBooking(false);
     setShowBookingModal(true);
   };
 
@@ -93,15 +95,25 @@ function EquipmentList() {
       const start = new Date(bookingDetails.startDate);
       // Ensure we treat the date as local midnight to avoid timezone shifts
       const end = new Date(start.getTime() + bookingDetails.days * 86400000);
+      const totalPrice = selectedItem.pricePerDay * bookingDetails.days;
       
-      await API.post("/bookings", {
-        equipment: selectedItem._id,
-        farmer: user._id,
-        startDate: start,
-        endDate: end
-      }, { headers: { Authorization: `Bearer ${token}` } });
-      
-      alert(`Successfully sent booking request for ${selectedItem.name}! (From ${start.toLocaleDateString()} to ${new Date(end.getTime() - 1).toLocaleDateString()})`);
+      if (isGroupBooking) {
+        await API.post("/group-bookings", {
+          equipment: selectedItem._id,
+          startDate: start,
+          endDate: end,
+          totalPrice
+        }, { headers: { Authorization: `Bearer ${token}` } });
+        alert(`Successfully created group booking for ${selectedItem.name}!`);
+      } else {
+        await API.post("/bookings", {
+          equipment: selectedItem._id,
+          farmer: user._id,
+          startDate: start,
+          endDate: end
+        }, { headers: { Authorization: `Bearer ${token}` } });
+        alert(`Successfully sent booking request for ${selectedItem.name}! (From ${start.toLocaleDateString()} to ${new Date(end.getTime() - 1).toLocaleDateString()})`);
+      }
       setShowBookingModal(false);
     } catch (err) {
       console.error(err);
@@ -189,9 +201,9 @@ function EquipmentList() {
       {/* Booking Modal */}
       {showBookingModal && (
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
-          <div className="card" style={{ maxWidth: "420px", width: "90%", padding: "2.5rem", borderRadius: "24px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", position: "relative" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
-              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{t('book_item')} {selectedItem?.name}</h3>
+          <div className="card" style={{ maxWidth: "420px", width: "90%", padding: "1.5rem", borderRadius: "20px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)", position: "relative" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.2rem" }}>
+              <h3 style={{ fontSize: "1.5rem", margin: 0 }}>{isGroupBooking ? "Start Group Booking:" : t('book_item')} {selectedItem?.name}</h3>
               <button 
                 type="button"
                 onClick={() => setShowBookingModal(false)} 
@@ -217,39 +229,54 @@ function EquipmentList() {
                 &times;
               </button>
             </div>
-            <form onSubmit={confirmBooking} style={{ display: "flex", flexDirection: "column", gap: "1.2rem", marginTop: "1.5rem" }}>
+            <form onSubmit={confirmBooking} style={{ display: "flex", flexDirection: "column", gap: "0.8rem", marginTop: "1rem" }}>
+              <div className="input-group" style={{ marginBottom: "0.2rem" }}>
+                <label style={{ display: "block", marginBottom: "0.3rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>{t('booking_type')}</label>
+                <div style={{ display: "flex", gap: "1.5rem" }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: "0.4rem", cursor: "pointer", color: "var(--text-main)", fontSize: "0.95rem" }}>
+                    <input type="radio" name="bookingType" checked={!isGroupBooking} onChange={() => setIsGroupBooking(false)} />
+                    {t('individual_booking')}
+                  </label>
+                  <label style={{ display: "flex", alignItems: "center", gap: "0.4rem", cursor: "pointer", color: "var(--text-main)", fontSize: "0.95rem" }}>
+                    <input type="radio" name="bookingType" checked={isGroupBooking} onChange={() => setIsGroupBooking(true)} />
+                    {t('group_booking')}
+                  </label>
+                </div>
+              </div>
               <div className="input-group">
-                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>{t('start_date')}</label>
+                <label style={{ display: "block", marginBottom: "0.3rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>{t('start_date')}</label>
                 <input 
                   type="date" 
                   required 
                   min={new Date().toISOString().split('T')[0]}
                   value={bookingDetails.startDate}
                   onChange={(e) => setBookingDetails({ ...bookingDetails, startDate: e.target.value })}
+                  style={{ padding: "0.5rem" }}
                 />
               </div>
               <div className="input-group">
-                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>{t('num_days')}</label>
+                <label style={{ display: "block", marginBottom: "0.3rem", fontSize: "0.9rem", color: "var(--text-muted)" }}>{t('num_days')}</label>
                 <input 
                   type="number" 
                   required 
                   min="1"
                   value={bookingDetails.days}
                   onChange={(e) => setBookingDetails({ ...bookingDetails, days: e.target.value })}
+                  style={{ padding: "0.5rem" }}
                 />
               </div>
-              <div style={{ padding: "1rem", background: "rgba(16, 185, 129, 0.08)", borderRadius: "12px", border: "1px solid rgba(16, 185, 129, 0.1)", fontSize: "0.9rem" }}>
-                <p style={{ margin: "0 0 0.5rem 0", color: "var(--text-muted)" }}><strong>{t('reservation_period')}:</strong></p>
+              <div style={{ padding: "0.8rem", background: "rgba(16, 185, 129, 0.08)", borderRadius: "10px", border: "1px solid rgba(16, 185, 129, 0.1)", fontSize: "0.9rem" }}>
+                <p style={{ margin: "0 0 0.3rem 0", color: "var(--text-muted)" }}><strong>{t('reservation_period')}:</strong></p>
                 <p style={{ margin: 0, color: "var(--text-main)", fontWeight: "500" }}>
                   {bookingDetails.startDate ? new Date(bookingDetails.startDate).toLocaleDateString() : "---"} 
                   {" to "}
                   {bookingDetails.startDate ? new Date(new Date(bookingDetails.startDate).getTime() + (bookingDetails.days - 1) * 86400000).toLocaleDateString() : "---"}
                 </p>
-                <p style={{ margin: "0.8rem 0 0 0", color: "var(--primary)", fontWeight: "700", fontSize: "1.1rem" }}>{t('total_cost')}: ₹{selectedItem?.pricePerDay * bookingDetails.days}</p>
+                <p style={{ margin: "0.5rem 0 0 0", color: "var(--primary)", fontWeight: "700", fontSize: "1.05rem" }}>{t('total_cost')}: ₹{selectedItem?.pricePerDay * bookingDetails.days}</p>
               </div>
-              <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>{t('confirm_request')}</button>
-                <button type="button" className="btn-primary" style={{ flex: 1, background: "rgba(100, 116, 139, 0.1)", color: "var(--text-main)", border: "1px solid var(--border-color)" }} onClick={() => setShowBookingModal(false)}>{t('cancel')}</button>
+              <div style={{ display: "flex", gap: "1rem", marginTop: "0.5rem" }}>
+                <button type="submit" className="btn-primary" style={{ flex: 1, padding: "0.6rem" }}>{t('confirm_request')}</button>
+                <button type="button" className="btn-primary" style={{ flex: 1, padding: "0.6rem", background: "rgba(100, 116, 139, 0.1)", color: "var(--text-main)", border: "1px solid var(--border-color)" }} onClick={() => setShowBookingModal(false)}>{t('cancel')}</button>
               </div>
             </form>
           </div>

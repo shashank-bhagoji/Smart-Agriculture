@@ -85,8 +85,8 @@ function GroupBooking() {
       <div className="card" style={{ marginTop: "3rem", background: "linear-gradient(135deg, var(--bg-surface), rgba(16,185,129,0.05))" }}>
         <h3>Start a New Group?</h3>
         <p>Book equipment and let others join you to split the costs.</p>
-        <button className="btn-secondary" style={{ marginTop: "1rem" }} onClick={() => alert("Navigate to equipment and choose 'Start Group' (coming soon!)")}>
-          How to start
+        <button className="btn-secondary" style={{ marginTop: "1rem" }} onClick={() => window.location.href = '/equipment'}>
+          Go to Equipment
         </button>
       </div>
     </div>

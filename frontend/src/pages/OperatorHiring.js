@@ -99,31 +99,59 @@ function OperatorHiring() {
       {/* Booking Modal */}
       {showBookingModal && (
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.7)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
-          <div className="card" style={{ maxWidth: "400px", width: "90%", padding: "2rem" }}>
-            <h3>{t("Hire ", "Hire ")} {selectedItem?.name}</h3>
-            <form onSubmit={confirmHiring} style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1.5rem" }}>
+          <div className="card" style={{ maxWidth: "400px", width: "90%", padding: "1.5rem", borderRadius: "20px", position: "relative" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.2rem" }}>
+              <h3 style={{ margin: 0 }}>{t("Hire ", "Hire ")} {selectedItem?.name}</h3>
+              <button 
+                type="button"
+                onClick={() => setShowBookingModal(false)} 
+                style={{ 
+                  background: "rgba(239, 68, 68, 0.1)", 
+                  border: "none", 
+                  color: "#ef4444", 
+                  width: "28px", 
+                  height: "28px", 
+                  borderRadius: "50%", 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: "center", 
+                  fontSize: "1.1rem", 
+                  cursor: "pointer", 
+                  transition: "all 0.2s ease",
+                  marginLeft: "1rem",
+                  flexShrink: 0
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)'; e.currentTarget.style.transform = 'scale(1.08)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; e.currentTarget.style.transform = 'scale(1)'; }}
+              >
+                &times;
+              </button>
+            </div>
+            <form onSubmit={confirmHiring} style={{ display: "flex", flexDirection: "column", gap: "0.8rem", marginTop: "1rem" }}>
               <div className="input-group">
-                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem" }}>{t("Start Date", "Start Date")}</label>
+                <label style={{ display: "block", marginBottom: "0.3rem", fontSize: "0.9rem" }}>{t("Start Date", "Start Date")}</label>
                 <input 
                   type="date" 
                   required 
                   min={new Date().toISOString().split('T')[0]}
                   value={bookingDetails.startDate}
                   onChange={(e) => setBookingDetails({ ...bookingDetails, startDate: e.target.value })}
+                  style={{ padding: "0.5rem" }}
                 />
               </div>
               <div className="input-group">
-                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem" }}>{t("Number of Days", "Number of Days")}</label>
+                <label style={{ display: "block", marginBottom: "0.3rem", fontSize: "0.9rem" }}>{t("Number of Days", "Number of Days")}</label>
                 <input 
                   type="number" 
                   required 
                   min="1"
                   value={bookingDetails.days}
                   onChange={(e) => setBookingDetails({ ...bookingDetails, days: e.target.value })}
+                  style={{ padding: "0.5rem" }}
                 />
               </div>
               <div style={{ padding: "0.8rem", background: "rgba(16, 185, 129, 0.1)", borderRadius: "8px", fontSize: "0.85rem" }}>
-                <p style={{ margin: "0 0 0.4rem 0" }}><strong>{t("Hiring Period:", "Hiring Period:")}</strong></p>
+                <p style={{ margin: "0 0 0.3rem 0" }}><strong>{t("Hiring Period:", "Hiring Period:")}</strong></p>
                 <p style={{ margin: 0 }}>
                   {bookingDetails.startDate ? new Date(bookingDetails.startDate).toLocaleDateString() : "---"} 
                   {" to "}
@@ -131,9 +159,9 @@ function OperatorHiring() {
                 </p>
                 <p style={{ margin: "0.4rem 0 0 0", color: "var(--primary-color)", fontWeight: "bold" }}>{t("Total Cost:", "Total Cost:")} ₹{selectedItem?.ratePerDay * bookingDetails.days}</p>
               </div>
-              <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>{t("Confirm Request", "Confirm Request")}</button>
-                <button type="button" className="btn-primary" style={{ flex: 1, background: "#4b5563" }} onClick={() => setShowBookingModal(false)}>{t("Cancel", "Cancel")}</button>
+              <div style={{ display: "flex", gap: "1rem", marginTop: "0.5rem" }}>
+                <button type="submit" className="btn-primary" style={{ flex: 1, padding: "0.6rem" }}>{t("Confirm Request", "Confirm Request")}</button>
+                <button type="button" className="btn-primary" style={{ flex: 1, padding: "0.6rem", background: "#4b5563" }} onClick={() => setShowBookingModal(false)}>{t("Cancel", "Cancel")}</button>
               </div>
             </form>
           </div>

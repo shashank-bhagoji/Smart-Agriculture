@@ -27,7 +27,7 @@ const getCropInsights = (crop) => {
       climate: {
         title: "Warm Semi-Arid Adaptability",
         text: "Maize is highly adaptable and performs best in sunny conditions with moderate, well-distributed seasonal rainfall.",
-        icon: "☀️"
+        icon: ""
       },
       soil: {
         title: "Well-Drained Loam Setup",
@@ -57,7 +57,7 @@ const getCropInsights = (crop) => {
       climate: {
         title: "Drought-Resistant Pulses",
         text: "Pigeonpeas (Tur) are highly drought-tolerant, matching the dry semi-arid climate of Kalaburagi (the Tur bowl of Karnataka).",
-        icon: "☀️"
+        icon: ""
       },
       soil: {
         title: "Deep Alluvial/Black Soil",
@@ -72,7 +72,7 @@ const getCropInsights = (crop) => {
       climate: {
         title: "Sunny & Dry Harvest Climate",
         text: "Requires a long frost-free warm season with ample sunshine and dry conditions during the boll-opening stage.",
-        icon: "🌤️"
+        icon: ""
       },
       soil: {
         title: "Regur (Black Cotton) Soil",
@@ -102,7 +102,7 @@ const getCropInsights = (crop) => {
       climate: {
         title: "Semi-Arid Arid Climate",
         text: "Extremely well-suited for dry, warm districts. Dry air during fruit development enhances skin color and quality.",
-        icon: "☀️"
+        icon: ""
       },
       soil: {
         title: "Light Sandy-Loam/Clay-Loam",
@@ -117,7 +117,7 @@ const getCropInsights = (crop) => {
       climate: {
         title: "Hot & Sunny Summer Crop",
         text: "Requires warm daytime temperatures (above 25°C) and dry air. Ideal for summer riverbed or drip irrigation farming.",
-        icon: "☀️"
+        icon: ""
       },
       soil: {
         title: "Sandy/Riverbed Loams",
@@ -132,7 +132,7 @@ const getCropInsights = (crop) => {
       climate: {
         title: "Dry & Warm Climatic Profiles",
         text: "Requires warm, dry weather and high sunshine hours. Excess rainfall during ripening will dilute sugar levels.",
-        icon: "☀️"
+        icon: ""
       },
       soil: {
         title: "Sandy Loams with High Drainage",
@@ -416,7 +416,7 @@ function Recommendations() {
                 disabled={loadingWeather}
                 style={{ fontSize: "0.8rem", padding: "0.4rem 0.8rem", background: "rgba(16, 185, 129, 0.1)", color: "var(--primary)", border: "1px solid var(--border-color)", borderRadius: "8px", cursor: "pointer", display: "flex", alignItems: "center", gap: "5px" }}
               >
-                {loadingWeather ? `🔄 ${t("loading")}` : `🌦️ ${t("get_live_weather")}`}
+                {loadingWeather ? `🔄 ${t("loading")}` : ` ${t("get_live_weather")}`}
               </button>
             </h3>
 
@@ -698,7 +698,7 @@ function Recommendations() {
                     </div>
                   ) : (
                     <div>
-                      <span style={{ fontSize: "3rem" }}>📸</span>
+                      <span style={{ fontSize: "3rem" }}>📷</span>
                       <h4 style={{ margin: "1rem 0 0.25rem 0", fontSize: "1rem" }}>{t("click_to_upload")}</h4>
                       <p style={{ fontSize: "0.8rem", opacity: 0.6 }}>Supports JPG, JPEG, PNG, WEBP up to 5MB</p>
                     </div>
@@ -759,7 +759,7 @@ function Recommendations() {
                 </div>
               ) : (
                 <div className="card" style={{ background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.1)", borderRadius: "16px", padding: "3rem 2rem", textAlign: "center", opacity: 0.6 }}>
-                  <span style={{ fontSize: "3rem" }}>📸</span>
+                  <span style={{ fontSize: "3rem" }}>📷</span>
                   <h3 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>{t("awaiting_leaf_scan")}</h3>
                   <p style={{ fontSize: "0.9rem" }}>{t("drag_upload_leaf")}</p>
                 </div>

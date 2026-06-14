@@ -119,7 +119,7 @@ function Dashboard() {
           <Link to="/operator-hiring" className="nav-link" style={{ color: 'var(--primary)', marginTop: 'auto', display: 'block', fontWeight: "700" }}>{t('learn_more')} →</Link>
         </div>
         <div className="card service-feature">
-          <div className="service-icon">🌦️</div>
+          <div className="service-icon"></div>
           <h3>{t('weather_insights_title')}</h3>
           <p>{t('weather_insights_desc')}</p>
           <Link to="/weather" className="nav-link" style={{ color: 'var(--primary)', marginTop: 'auto', display: 'block', fontWeight: "700" }}>{t('learn_more')} →</Link>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import API from "../services/api";
 
 function OperatorHiring() {
+  const { t } = useTranslation();
   const [operators, setOperators] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -72,7 +74,7 @@ function OperatorHiring() {
               {op.name ? op.name.charAt(0).toUpperCase() : "O"}
             </div>
             <h3 style={{ margin: "0 0 0.5rem 0" }}>{op.name}</h3>
-            <p className="badge" style={{ marginBottom: "0.5rem" }}>{op.servicesOffered?.join(", ") || "General Operator"}</p>
+            <p className="badge" style={{ marginBottom: "0.5rem" }}>{op.servicesOffered?.map(s => t(s, s)).join(", ") || t("General Operator", "General Operator")}</p>
             <div className="operator-meta" style={{ display: "flex", gap: "1rem", marginBottom: "1rem", fontSize: "0.9rem" }}>
               <span>⭐ {op.rating?.toFixed(1) || "New"}</span>
               <span className="price" style={{ color: "var(--primary-color)", fontWeight: "bold" }}>₹{op.ratePerDay}/day</span>
@@ -98,10 +100,10 @@ function OperatorHiring() {
       {showBookingModal && (
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.7)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}>
           <div className="card" style={{ maxWidth: "400px", width: "90%", padding: "2rem" }}>
-            <h3>Hire {selectedItem?.name}</h3>
+            <h3>{t("Hire ", "Hire ")} {selectedItem?.name}</h3>
             <form onSubmit={confirmHiring} style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1.5rem" }}>
               <div className="input-group">
-                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem" }}>Start Date</label>
+                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem" }}>{t("Start Date", "Start Date")}</label>
                 <input 
                   type="date" 
                   required 
@@ -111,7 +113,7 @@ function OperatorHiring() {
                 />
               </div>
               <div className="input-group">
-                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem" }}>Number of Days</label>
+                <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.9rem" }}>{t("Number of Days", "Number of Days")}</label>
                 <input 
                   type="number" 
                   required 
@@ -121,17 +123,17 @@ function OperatorHiring() {
                 />
               </div>
               <div style={{ padding: "0.8rem", background: "rgba(16, 185, 129, 0.1)", borderRadius: "8px", fontSize: "0.85rem" }}>
-                <p style={{ margin: "0 0 0.4rem 0" }}><strong>Hiring Period:</strong></p>
+                <p style={{ margin: "0 0 0.4rem 0" }}><strong>{t("Hiring Period:", "Hiring Period:")}</strong></p>
                 <p style={{ margin: 0 }}>
                   {bookingDetails.startDate ? new Date(bookingDetails.startDate).toLocaleDateString() : "---"} 
                   {" to "}
                   {bookingDetails.startDate ? new Date(new Date(bookingDetails.startDate).getTime() + (bookingDetails.days - 1) * 86400000).toLocaleDateString() : "---"}
                 </p>
-                <p style={{ margin: "0.4rem 0 0 0", color: "var(--primary-color)", fontWeight: "bold" }}>Total Cost: ₹{selectedItem?.ratePerDay * bookingDetails.days}</p>
+                <p style={{ margin: "0.4rem 0 0 0", color: "var(--primary-color)", fontWeight: "bold" }}>{t("Total Cost:", "Total Cost:")} ₹{selectedItem?.ratePerDay * bookingDetails.days}</p>
               </div>
               <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>Confirm Request</button>
-                <button type="button" className="btn-primary" style={{ flex: 1, background: "#4b5563" }} onClick={() => setShowBookingModal(false)}>Cancel</button>
+                <button type="submit" className="btn-primary" style={{ flex: 1 }}>{t("Confirm Request", "Confirm Request")}</button>
+                <button type="button" className="btn-primary" style={{ flex: 1, background: "#4b5563" }} onClick={() => setShowBookingModal(false)}>{t("Cancel", "Cancel")}</button>
               </div>
             </form>
           </div>

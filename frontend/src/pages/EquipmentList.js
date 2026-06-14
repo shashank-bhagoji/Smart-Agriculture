@@ -114,7 +114,7 @@ function EquipmentList() {
       <h2 className="page-title">{t('available_equipment_title')}</h2>
 
       {/* Search & Filter Bar */}
-      <div className="filter-bar">
+      <div className="filter-bar" style={{ maxWidth: "600px", margin: "0 auto 2rem" }}>
         <input
           className="filter-input"
           placeholder={t('search_placeholder')}

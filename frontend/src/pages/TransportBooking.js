@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import API from "../services/api";
 
 function TransportBooking() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ equipment: "", fromLocation: "", toLocation: "", price: "" });
   const [myBookings, setMyBookings] = useState([]);
   const [equipmentList, setEquipmentList] = useState([]);
@@ -47,7 +49,7 @@ function TransportBooking() {
 
       {/* Request Form */}
       <div className="card form-card">
-        <h3>New Transport Request</h3>
+        <h3>{t("New Transport Request", "New Transport Request")}</h3>
         <form onSubmit={handleSubmit} className="auth-form" style={{ gap: "1rem" }}>
           <div className="input-group">
             <select
@@ -55,7 +57,7 @@ function TransportBooking() {
               onChange={(e) => setForm({ ...form, equipment: e.target.value })}
               required
             >
-              <option value="">Select Equipment</option>
+              <option value="">{t("Select Equipment", "Select Equipment")}</option>
               {equipmentList.map((eq) => (
                 <option key={eq._id} value={eq._id}>{eq.name}</option>
               ))}
@@ -63,7 +65,7 @@ function TransportBooking() {
           </div>
           <div className="input-group">
             <input
-              placeholder="From Location"
+              placeholder={t("From Location", "From Location")}
               value={form.fromLocation}
               onChange={(e) => setForm({ ...form, fromLocation: e.target.value })}
               required
@@ -71,7 +73,7 @@ function TransportBooking() {
           </div>
           <div className="input-group">
             <input
-              placeholder="To Location (Your Farm)"
+              placeholder={t("To Location (Your Farm)", "To Location (Your Farm)")}
               value={form.toLocation}
               onChange={(e) => setForm({ ...form, toLocation: e.target.value })}
               required
@@ -80,7 +82,7 @@ function TransportBooking() {
           <div className="input-group">
             <input
               type="number"
-              placeholder="Agreed Price (₹)"
+              placeholder={t("Agreed Price (₹)", "Agreed Price (₹)")}
               value={form.price}
               onChange={(e) => setForm({ ...form, price: e.target.value })}
               required
@@ -88,13 +90,13 @@ function TransportBooking() {
           </div>
           {msg && <p className={msg.includes("success") ? "success-msg" : "error-msg"}>{msg}</p>}
           <button type="submit" className="btn-primary" disabled={submitting}>
-            {submitting ? "Submitting..." : "Request Transport"}
+            {submitting ? t("Submitting...", "Submitting...") : t("Request Transport", "Request Transport")}
           </button>
         </form>
       </div>
 
       {/* Existing bookings */}
-      <h3 style={{ marginTop: "2rem" }}>My Transport Requests</h3>
+      <h3 style={{ marginTop: "2rem" }}>{t("My Transport Requests", "My Transport Requests")}</h3>
       <div className="grid">
         {myBookings.map((b) => (
           <div key={b._id} className="card">
@@ -104,7 +106,7 @@ function TransportBooking() {
             <span className={`status-badge ${b.status}`}>{b.status}</span>
           </div>
         ))}
-        {myBookings.length === 0 && <p className="empty-state">No transport requests yet.</p>}
+        {myBookings.length === 0 && <p className="empty-state">{t("No transport requests yet.", "No transport requests yet.")}</p>}
       </div>
     </div>
   );

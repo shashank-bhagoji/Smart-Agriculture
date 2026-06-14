@@ -132,7 +132,7 @@ function ServiceMarketplace() {
             onClick={() => filterByCategory(cat)}
             style={{ padding: "0.5rem 1.2rem", fontSize: "0.9rem" }}
           >
-            {cat === "All" ? t('All') || 'All' : cat}
+            {t(cat, cat)}
           </button>
         ))}
       </div>
@@ -175,7 +175,7 @@ function ServiceMarketplace() {
                 <h2 className="price" style={{ color: "var(--primary)", margin: 0, fontSize: "1.3rem", fontWeight: "700" }}>
                   ₹{svc.price} <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: "400" }}>/ {t('per_service')}</span>
                 </h2>
-                <span className="badge" style={{ margin: 0, fontSize: "0.75rem", padding: "0.2rem 0.6rem", borderRadius: "6px" }}>{svc.category || "General"}</span>
+                <span className="badge" style={{ margin: 0, fontSize: "0.75rem", padding: "0.2rem 0.6rem", borderRadius: "6px" }}>{t(svc.category || "General", svc.category || "General")}</span>
               </div>
               
               <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: 0 }}>{t('provider')}: <span style={{ color: "var(--text-main)", fontWeight: "500" }}>{svc.provider?.name || "Expert"}</span></p>

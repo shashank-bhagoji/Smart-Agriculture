@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 // Weather icon mapping
 const weatherIcons = {
-  Clear: "☀️", Clouds: "☁️", Rain: "🌧️", Drizzle: "🌦️",
+  Clear: "", Clouds: "☁️", Rain: "🌧️", Drizzle: "",
   Thunderstorm: "⛈️", Snow: "❄️", Mist: "🌫️", Fog: "🌫️", default: "🌡️"
 };
 
@@ -137,12 +137,12 @@ function Weather() {
   return (
     <div className="container">
       <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-        <h2 className="page-title" style={{ marginBottom: "0.5rem" }}>🌤️ {t("weather_insights")}</h2>
+        <h2 className="page-title" style={{ marginBottom: "0.5rem" }}> {t("weather_insights")}</h2>
         <p className="page-subtitle">{t("weather_subtitle")}</p>
       </div>
 
       {/* Search Section */}
-      <div className="card form-card" style={{ margin: "0 auto 3rem", boxShadow: "var(--shadow-lg)" }}>
+      <div className="card form-card" style={{ maxWidth: "600px", margin: "0 auto 3rem", boxShadow: "var(--shadow-lg)" }}>
         <form onSubmit={fetchWeather} style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
           <div className="input-group" style={{ flex: "1 1 300px", marginBottom: 0 }}>
             <input
@@ -150,10 +150,10 @@ function Weather() {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
-              style={{ padding: "1.2rem", fontSize: "1.1rem" }}
+              style={{ padding: "0.8rem", fontSize: "1rem" }}
             />
           </div>
-          <button type="submit" className="btn-primary" disabled={loading} style={{ width: "auto", padding: "1.2rem 2rem", marginTop: 0 }}>
+          <button type="submit" className="btn-primary" disabled={loading} style={{ width: "auto", padding: "0.8rem 1.5rem", marginTop: 0 }}>
             {loading ? t("searching") : `🔍 ${t("check_weather")}`}
           </button>
         </form>

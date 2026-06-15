@@ -116,6 +116,10 @@ npm start
 ```
 *The frontend will run on `http://localhost:3000`.*
 
+## Project Report
+
+📄 [View Project Report](https://drive.google.com/file/d/11tccqVgH8pY0Tbdq_YSdF9ApMeY63qLY/view?usp=sharing)
+
 ## Key API Endpoints
 - **Authentication**: `/api/auth` (Register, login, profile)
 - **Equipment**: `/api/equipment` (CRUD for equipment)

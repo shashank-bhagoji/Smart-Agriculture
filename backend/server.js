@@ -36,7 +36,8 @@ app.use(cors({
   },
   credentials: true
 }));
-app.use(express.json({ limit: '10kb' })); // Limit body size
+app.use(express.json({ limit: '50mb' })); // Limit body size to allow image uploads
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Rate Limiting
 const limiter = rateLimit({

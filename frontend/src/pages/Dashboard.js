@@ -227,7 +227,7 @@ function Dashboard() {
           </div>
           <h3>{t('Service Marketplace', 'Service Marketplace')}</h3>
           <p>{t('Browse and request farm services.', 'Browse and request farm services.')}</p>
-          <Link to="/services" onClick={(e) => handleRestrictedClick(e, "/services", "Service Marketplace")} className="nav-link" style={{ color: 'var(--primary)', marginTop: 'auto', display: 'block', fontWeight: "700" }}>{t('learn_more')} →</Link>
+          <Link to="/service-marketplace" onClick={(e) => handleRestrictedClick(e, "/service-marketplace", "Service Marketplace")} className="nav-link" style={{ color: 'var(--primary)', marginTop: 'auto', display: 'block', fontWeight: "700" }}>{t('learn_more')} →</Link>
         </div>
         <div className="card service-feature" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div className="service-icon" style={{ background: '#f1f5f9', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '16px', margin: '0 auto 1rem auto' }}>

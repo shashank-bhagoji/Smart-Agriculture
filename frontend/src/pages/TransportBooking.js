@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import API from "../services/api";
 
 function TransportBooking() {
   const { t } = useTranslation();
+  const location = useLocation();
   const [form, setForm] = useState({ equipment: "", fromLocation: "", toLocation: "", price: "" });
   const [myBookings, setMyBookings] = useState([]);
   const [equipmentList, setEquipmentList] = useState([]);
@@ -22,6 +24,24 @@ function TransportBooking() {
         .catch(console.error);
     }
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const equipmentId = params.get("equipmentId") || "";
+    const fromLoc = params.get("from") || "";
+    const toLoc = params.get("to") || "";
+    const priceVal = params.get("price") || "";
+
+    if (equipmentId || fromLoc || toLoc || priceVal) {
+      setForm({
+        equipment: equipmentId,
+        fromLocation: fromLoc,
+        toLocation: toLoc,
+        price: priceVal
+      });
+    }
+  }, [location.search]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

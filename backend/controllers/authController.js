@@ -7,7 +7,7 @@ const { sendRegistrationAlert } = require("../services/emailService");
 
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role, serviceType } = req.body;
+    const { name, email, password, role, serviceType, location } = req.body;
 
     // Password validation: > 8 characters, at least one uppercase, at least one special character
     const hasUpperCase = /[A-Z]/.test(password);
@@ -44,6 +44,7 @@ exports.register = async (req, res) => {
       password: hashed,
       role,
       isApproved,
+      location,
       serviceType: role === "service_provider" ? serviceType : undefined
     });
 

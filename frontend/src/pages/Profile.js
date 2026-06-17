@@ -17,57 +17,45 @@ function Profile() {
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [pendingOwners, setPendingOwners] = useState([]);
   const [activeOwners, setActiveOwners] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [notifications, setNotifications] = useState([]); // removed unused variable
   const token = localStorage.getItem("token");
-  const isLoggedIn = !!token;
   const navigate = useNavigate();
 
+
+
+
+
+
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!token) {
       navigate("/login");
       return;
     }
-    
-    const fetchNotifs = () => {
-      API.get("/notifications", { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => setNotifications(res.data))
-        .catch(() => {});
-    };
-
-    fetchNotifs();
-    const interval = setInterval(fetchNotifs, 10000); // Poll every 10s
-    return () => clearInterval(interval);
-  }, [isLoggedIn, token, navigate]);
-
-  useEffect(() => {
-    if (token) {
-      API.get("/users/me", { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => {
-          setUser(res.data);
-          if (res.data.role === "owner") {
-            fetchOwnerEquipment();
-            fetchBookings("owner");
-          } else if (res.data.role === "farmer") {
-            fetchBookings("farmer");
-            fetchFavorites();
-          } else if (res.data.role === "service_provider") {
-            fetchMyService(res.data._id);
-            fetchBookings("provider");
-          } else if (res.data.role === "admin") {
-            fetchAdminData();
-          }
-        })
-        .catch((err) => {
-          console.error("Profile fetch error:", err);
-          if (err.response?.status === 401 || err.response?.status === 403) {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }
-        });
-    }
+    API.get("/users/me", { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setUser(res.data);
+        if (res.data.role === "owner") {
+          fetchOwnerEquipment();
+          fetchBookings("owner");
+        } else if (res.data.role === "farmer") {
+          fetchBookings("farmer");
+          fetchFavorites();
+        } else if (res.data.role === "service_provider") {
+          fetchMyService(res.data._id);
+          fetchBookings("provider");
+        } else if (res.data.role === "admin") {
+          fetchAdminData();
+        }
+      })
+      .catch((err) => {
+        console.error("Profile fetch error:", err);
+        if (err.response?.status === 401 || err.response?.status === 403) {
+          localStorage.removeItem("token");
+          window.location.href = "/login";
+        }
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
+
 
   const fetchOwnerEquipment = () => {
     API.get("/equipment/owner", { headers: { Authorization: `Bearer ${token}` } })
@@ -440,6 +428,7 @@ function Profile() {
                           <p style={{ margin: "0", fontSize: "0.85rem", opacity: 0.8 }}>
                             {isService ? t('provider', 'Provider') : t('owner', 'Owner')}: {isService ? (item.provider?.name ? t(item.provider.name.trim(), item.provider.name.trim()) : "") : (item.owner?.name ? t(item.owner.name.trim(), item.owner.name.trim()) : "")}
                           </p>
+
                         </div>
                         
                         <div style={{ textAlign: "right", minWidth: "100px" }}>
